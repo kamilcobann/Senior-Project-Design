@@ -1,0 +1,86 @@
+<!-- <div class="w-full h-screen bg-slate-900 text-white">
+    
+</div> -->
+<div class="flex w-full h-screen bg-slate-900 text-white">
+    <div class="md:w-1/3 w-full m-auto">
+        <div class="">
+            <div class="">
+                <div class="flex justify-center items-center font-bold text-2xl md:text-5xl mb-5">
+                    ProTrack 🔭
+                </div>
+            </div>
+            <div class="mx-3">
+                <div class="mb-4">
+                    <div class="font-bold text-xl md:text-3xl">
+                        Register
+                    </div>
+                </div>
+                <div class="border rounded-xl border-purple-500 shadow-md shadow-purple-500">
+                    <div class="m-4 md:p-4">
+                        <form [formGroup]="registerForm">
+                            <div class="mb-4">
+                                <label for="name" class="label text-lg">Name</label>
+                                <input type="text" formControlName="name" name="name" id="name" class="input p-3">
+                                <div *ngIf="registerForm.get('name')?.hasError('required') && registerForm.get('name')?.touched"
+                                    class="input-error mt-1">
+                                    Name is required!
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="name" class="label text-lg">Address</label>
+                                <textarea name="address" formControlName="address" id="address" class="input rounded-xl"
+                                    cols="20" rows="5"></textarea>
+                                <div *ngIf="registerForm.get('address')?.hasError('required') && registerForm.get('address')?.touched"
+                                    class="input-error mt-1">
+                                    Address is required!
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="label text-lg">Email Address</label>
+                                <input type="email" formControlName="email" name="email" id="email" class="input p-3">
+                                <div *ngIf="registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched"
+                                    class="input-error mt-1">
+                                    Email is required!
+                                </div>
+                            </div>
+                            <div class="mb-4 flex flex-col md:flex-row gap-2">
+                                <div class="w-full">
+                                    <label for="password" class="label text-lg">Password</label>
+                                    <input type="password" formControlName="password" name="password" id="password"
+                                        class="input p-3">
+                                    <div *ngIf="registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched"
+                                        class="input-error mt-1">
+                                        Password is required!
+                                    </div>
+                                </div>
+                                <div class="w-full">
+                                    <label for="password_confirmation"
+                                        class="label text-lg text-ellipsis truncate">Confirm Password</label>
+                                    <input type="password" formControlName="password_confirmation"
+                                        name="password_confirmation" id="password_confirmation" class="input p-3">
+                                    <div *ngIf="registerForm.get('password_confirmation')?.hasError('required') && registerForm.get('password_confirmation')?.touched"
+                                        class="input-error mt-1">
+                                        Confirmation password is required!
+                                    </div>
+                                    <div class="input-error mt-1" *ngIf="this.registerForm.value.password !== this.registerForm.value.password_confirmation">
+                                        Passwords don't match.
+                                      </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="my-5 flex flex-col-reverse md:flex-row items-center justify-between mx-5 h-full">
+                    <div (click)="login()"
+                        class="w-1/2 h-full hover:underline truncate hover:cursor-pointer text-center md:text-start font-medium text-gray-400 hover:text-gray-300">
+                        I have an account</div>
+                    <button (click)="register()"
+                        [classList]="true ? 'hover:bg-purple-500 button-secondary w-full md:w-1/2 p-4' : 'cursor-not-allowed button-secondary w-full md:w-1/2 p-4'">Register</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

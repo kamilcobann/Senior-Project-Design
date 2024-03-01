@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-protrack-register',
@@ -13,7 +14,8 @@ export class ProtrackRegisterComponent implements OnInit{
 
   constructor(
     private fb : FormBuilder,
-    private router : Router
+    private router : Router,
+    private authService: AuthService
   )
   {}
   ngOnInit(): void
@@ -23,7 +25,8 @@ export class ProtrackRegisterComponent implements OnInit{
         address : ['', [Validators.required,Validators.maxLength(255)]],
         email : ['', [Validators.required,Validators.email,Validators.maxLength(255)]],
         password : ['', [Validators.required,Validators.minLength(6),Validators.maxLength(255)]],
-        password_confirmation : ['', [Validators.required,Validators.minLength(6),Validators.maxLength(255)]]
+        c_password : ['', [Validators.required,Validators.minLength(6),Validators.maxLength(255)]],
+        phone : ['',[Validators.required,Validators.minLength(6),Validators.maxLength(20)]]
       });
 
   }
@@ -31,11 +34,16 @@ export class ProtrackRegisterComponent implements OnInit{
   register()
   {
     if(this.registerForm.valid &&
-       this.registerForm.value.password === this.registerForm.value.password_confirmation)
+       this.registerForm.value.password === this.registerForm.value.c_password)
     {
-      console.log(this.registerForm.value);
-      
+      this.authService.register(this.registerForm.value).subscribe(res => {
+        console.log(
+          res
+        );
+      });
     }
+    console.log("GOOFY AHH REGISTER");
+    
   }
 
   login()

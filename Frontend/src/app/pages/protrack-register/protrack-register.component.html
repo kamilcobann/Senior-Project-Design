@@ -43,6 +43,14 @@
                                     Email is required!
                                 </div>
                             </div>
+                            <div class="mb-4">
+                                <label for="phone" class="label text-lg">Phone</label>
+                                <input type="text" formControlName="phone" name="phone" id="phone" class="input p-3">
+                                <div *ngIf="registerForm.get('phone')?.hasError('required') && registerForm.get('phone')?.touched"
+                                    class="input-error mt-1">
+                                    Phone is required!
+                                </div>
+                            </div>
                             <div class="mb-4 flex flex-col md:flex-row gap-2">
                                 <div class="w-full">
                                     <label for="password" class="label text-lg">Password</label>
@@ -56,13 +64,13 @@
                                 <div class="w-full">
                                     <label for="password_confirmation"
                                         class="label text-lg text-ellipsis truncate">Confirm Password</label>
-                                    <input type="password" formControlName="password_confirmation"
-                                        name="password_confirmation" id="password_confirmation" class="input p-3">
-                                    <div *ngIf="registerForm.get('password_confirmation')?.hasError('required') && registerForm.get('password_confirmation')?.touched"
+                                    <input type="password" formControlName="c_password"
+                                        name="c_password" id="c_password" class="input p-3">
+                                    <div *ngIf="registerForm.get('c_password')?.hasError('required') && registerForm.get('c_password')?.touched"
                                         class="input-error mt-1">
                                         Confirmation password is required!
                                     </div>
-                                    <div class="input-error mt-1" *ngIf="this.registerForm.value.password !== this.registerForm.value.password_confirmation">
+                                    <div class="input-error mt-1" *ngIf="this.registerForm.value.password !== this.registerForm.value.c_password">
                                         Passwords don't match.
                                       </div>
                                 </div>

@@ -6,18 +6,22 @@ import { AppComponent } from './app.component';
 import { ProtrackLoginComponent } from './pages/protrack-login/protrack-login.component';
 import { ProtrackRegisterComponent } from './pages/protrack-register/protrack-register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule} from '@angular/common/http';
+import { ProtrackProjectDashboardComponent } from './pages/protrack-project-dashboard/protrack-project-dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProtrackLoginComponent,
-    ProtrackRegisterComponent
+    ProtrackRegisterComponent,
+    ProtrackProjectDashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -16,10 +16,14 @@ export class AuthService {
   ) { }
 
   login(user:User):Observable<any>{
+    console.log(user);
+    
     return this.http.post(this.uri+"/login",user);
   }
 
   register(user:User):Observable<any>{
+    console.log(user);
+    
     return this.http.post(this.uri+"/register",user);
   }
 }

@@ -33,7 +33,7 @@ export class ProtrackLoginComponent implements OnInit{
     if(this.loginForm.valid)
     {
       this.auth.login(this.loginForm.value).subscribe(res => {
-        sessionStorage.setItem('access_token', res.data.token)
+        sessionStorage.setItem('access_token', res.authorisation.token)
       });
 
     }

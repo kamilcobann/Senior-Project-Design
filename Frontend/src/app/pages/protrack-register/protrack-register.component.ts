@@ -37,13 +37,9 @@ export class ProtrackRegisterComponent implements OnInit{
        this.registerForm.value.password === this.registerForm.value.c_password)
     {
       this.authService.register(this.registerForm.value).subscribe(res => {
-        console.log(
-          res
-        );
+        sessionStorage.setItem('access_token',res.authorisation.token)
       });
-    }
-    console.log("GOOFY AHH REGISTER");
-    
+    }    
   }
 
   login()

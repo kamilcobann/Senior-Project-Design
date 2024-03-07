@@ -8,11 +8,13 @@ import { ProtrackRegisterComponent } from './pages/protrack-register/protrack-re
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { ProtrackProjectDashboardComponent } from './pages/protrack-project-dashboard/protrack-project-dashboard.component';
-import { heroUsers,heroComputerDesktop,heroTableCells,heroBars3,heroXMark,heroUserGroup,heroCalendar,heroCog6Tooth } from '@ng-icons/heroicons/outline';
+import { heroUsers,heroComputerDesktop,heroTableCells,heroBars3,heroXMark,heroUserGroup,heroCalendar,heroCog6Tooth,heroUserCircle } from '@ng-icons/heroicons/outline';
 import { ProtrackSidebarComponent } from './shared/components/protrack-sidebar/protrack-sidebar.component';
 import { ProtrackNavbarComponent } from './shared/components/protrack-navbar/protrack-navbar.component';
 import { ProtrackSidebarListItemComponent } from './shared/components/protrack-sidebar-list-item/protrack-sidebar-list-item.component';
 import { ProtrackNavbarListItemComponent } from './shared/components/protrack-navbar-list-item/protrack-navbar-list-item.component';
+import { ProtrackBoxComponent } from './shared/components/protrack-box/protrack-box.component';
+import { ProtrackProjectListItemComponent } from './shared/components/protrack-project-list-item/protrack-project-list-item.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { ProtrackNavbarListItemComponent } from './shared/components/protrack-na
     ProtrackSidebarComponent,
     ProtrackNavbarComponent,
     ProtrackSidebarListItemComponent,
-    ProtrackNavbarListItemComponent
+    ProtrackNavbarListItemComponent,
+    ProtrackBoxComponent,
+    ProtrackProjectListItemComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,7 @@ import { ProtrackNavbarListItemComponent } from './shared/components/protrack-na
     ReactiveFormsModule,
     HttpClientModule,
     NgIconsModule.withIcons({
-      heroUsers,heroComputerDesktop,heroBars3,heroTableCells,heroXMark,heroUserGroup,heroCalendar,heroCog6Tooth
+      heroUsers,heroComputerDesktop,heroBars3,heroTableCells,heroXMark,heroUserGroup,heroCalendar,heroCog6Tooth,heroUserCircle
     })
   ],
   providers: [],

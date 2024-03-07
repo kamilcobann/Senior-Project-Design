@@ -1,6 +1,6 @@
-<div class="flex  justify-start">
-    <div class="flex items-center py-3 gap-2 hover:bg-zinc-800 active:bg-zinc-800  w-full  rounded-e-3xl">
-        <ng-icon name="heroComputerDesktop" class="ms-4 font-semibold text-xl"></ng-icon>
-        <div class="font-semibold">Dashboard</div>
+<div class="flex  justify-start " (click)="navigateTo(item.url!)">
+    <div  class="flex items-center py-3 gap-2 hover:bg-zinc-800 active:bg-zinc-800  w-full  rounded-e-3xl">
+        <ng-icon [name]="item.icon!" class="ms-4 font-semibold text-xl"></ng-icon>
+        <div class="font-semibold">{{item.label}}</div>
     </div>
 </div>

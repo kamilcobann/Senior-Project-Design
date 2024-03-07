@@ -1,4 +1,10 @@
-<div class="block md:inline-block text-white-800 hover:text-white-800 px-3 py-3 border-b-2 border-white-800 md:border-none">
-    <ng-icon name="heroComputerDesktop"></ng-icon>
-    Dashboard
+<div (click)="navigateTo(item.url!)" class=" flex justify-between md:inline-block text-white-800 hover:text-white-800 px-3 py-3 border-b-2 border-white-800 md:border-none">
+    <div class="">
+        
+        {{item.label}}
+        </div>
+    <div class="">
+        <ng-icon [name]="item.icon!" class=" ms-4 font-light text-sm"></ng-icon>
+    </div>
+    
 </div>

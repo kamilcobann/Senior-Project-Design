@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { forms,buttons,common } from 'src/app/constants';
 
 @Component({
   selector: 'app-protrack-register',
@@ -11,7 +12,10 @@ import { AuthService } from 'src/app/services/auth.service';
 export class ProtrackRegisterComponent implements OnInit{
 
   registerForm!: FormGroup;
-
+  forms = forms;
+  buttons = buttons;
+  common = common;
+  
   constructor(
     private fb : FormBuilder,
     private router : Router,

@@ -8,7 +8,7 @@
         <div class="grid h-full">
             <div class="">
                 <div class="flex justify-end items-center font-bold text-4xl m-5">
-                    ProTrack 🔭
+                   {{common.logo}}
                 </div>
             </div>
             <div class="items-center h-full">
@@ -16,21 +16,21 @@
                     <form [formGroup]="loginForm">
                         <div class="mb-4">
                             <div class="font-bold text-3xl">
-                                Log in
+                                {{forms.login}}
                             </div>
                         </div>
                         <div class="mb-4">
-                            <label for="email" class="label text-lg">Email Address</label>
+                            <label for="email" class="label text-lg">{{forms.email}}</label>
                             <input formControlName="email" type="email" name="email" id="email" class="input p-3">
                             <div *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched" class="input-error mt-1">
-                                Email is required!
+                                {{forms.email_err}}
                             </div>
                         </div>
                         <div class="mb-4">
-                            <label for="password" class="label text-lg">Password</label>
+                            <label for="password" class="label text-lg">{{forms.password}}</label>
                             <input formControlName="password" type="password" name="password" id="password" class="input p-3">
                             <div *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched" class="input-error mt-1">
-                                Password is required!
+                                {{forms.password_err}}
                             </div>
                         </div>
                         <div class="mt-10 mb-5">
@@ -38,8 +38,8 @@
                         </div>
                     </form>
                     <div class="w-full flex justify-between">
-                        <div class="label hover:underline hover:cursor-pointer">Forgot your password? 🔍</div>
-                        <div class="label hover:underline hover:cursor-pointer" (click)="register()">Don't have an account?</div>
+                        <div class="label hover:underline hover:cursor-pointer">{{buttons.forgot_pass}}</div>
+                        <div class="label hover:underline hover:cursor-pointer" (click)="register()">{{buttons.dont_acc}}</div>
                     </div>
                 </div>
             </div>

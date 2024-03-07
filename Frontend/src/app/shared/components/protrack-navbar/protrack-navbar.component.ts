@@ -8,6 +8,34 @@ import { Component } from '@angular/core';
 export class ProtrackNavbarComponent {
   isMobileMenuOpen: boolean = false;
 
+  navbar_items = [
+    {
+      icon : "heroComputerDesktop",
+      label : "Dashboard",
+      url : "/dashboard"
+    },
+    {
+      icon : "heroTableCells",
+      label : "Projects",
+      url : "/dashboard"
+    },
+    {
+      icon : "heroUserGroup",
+      label : "Team Members",
+      url : "/dashboard"
+    },
+    {
+      icon : "heroCalendar",
+      label : "Team Availability",
+      url : "/dashboard"
+    },
+    {
+      icon : "heroCog6Tooth",
+      label : "Settings",
+      url : "/dashboard"
+    },
+  ]
+
   constructor() { }
 
   ngOnInit(): void {

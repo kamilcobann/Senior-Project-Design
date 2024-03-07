@@ -6,72 +6,72 @@
         <div class="">
             <div class="">
                 <div class="flex justify-center items-center font-bold text-2xl md:text-5xl mb-5">
-                    ProTrack 🔭
+                    {{common.logo}}
                 </div>
             </div>
             <div class="mx-3">
                 <div class="mb-4">
                     <div class="font-bold text-xl md:text-3xl">
-                        Register
+                        {{forms.register}}
                     </div>
                 </div>
                 <div class="border rounded-xl border-purple-500 shadow-md shadow-purple-500">
                     <div class="m-4 md:p-4">
                         <form [formGroup]="registerForm">
                             <div class="mb-4">
-                                <label for="name" class="label text-lg">Name</label>
+                                <label for="name" class="label text-lg">{{forms.name}}</label>
                                 <input type="text" formControlName="name" name="name" id="name" class="input p-3">
                                 <div *ngIf="registerForm.get('name')?.hasError('required') && registerForm.get('name')?.touched"
                                     class="input-error mt-1">
-                                    Name is required!
+                                    {{forms.name_err}}
                                 </div>
                             </div>
                             <div class="mb-4">
-                                <label for="name" class="label text-lg">Address</label>
+                                <label for="name" class="label text-lg">{{forms.address}}</label>
                                 <textarea name="address" formControlName="address" id="address" class="input rounded-xl"
                                     cols="20" rows="5"></textarea>
                                 <div *ngIf="registerForm.get('address')?.hasError('required') && registerForm.get('address')?.touched"
                                     class="input-error mt-1">
-                                    Address is required!
+                                    {{forms.address_err}}
                                 </div>
                             </div>
                             <div class="mb-4">
-                                <label for="email" class="label text-lg">Email Address</label>
+                                <label for="email" class="label text-lg">{{forms.email}}</label>
                                 <input type="email" formControlName="email" name="email" id="email" class="input p-3">
                                 <div *ngIf="registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched"
                                     class="input-error mt-1">
-                                    Email is required!
+                                    {{forms.email_err}}
                                 </div>
                             </div>
                             <div class="mb-4">
-                                <label for="phone" class="label text-lg">Phone</label>
+                                <label for="phone" class="label text-lg">{{forms.phone}}</label>
                                 <input type="text" formControlName="phone" name="phone" id="phone" class="input p-3">
                                 <div *ngIf="registerForm.get('phone')?.hasError('required') && registerForm.get('phone')?.touched"
                                     class="input-error mt-1">
-                                    Phone is required!
+                                    {{forms.phone_err}}
                                 </div>
                             </div>
                             <div class="mb-4 flex flex-col md:flex-row gap-2">
                                 <div class="w-full">
-                                    <label for="password" class="label text-lg">Password</label>
+                                    <label for="password" class="label text-lg">{{forms.password}}</label>
                                     <input type="password" formControlName="password" name="password" id="password"
                                         class="input p-3">
                                     <div *ngIf="registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched"
                                         class="input-error mt-1">
-                                        Password is required!
+                                        {{forms.password_err}}
                                     </div>
                                 </div>
                                 <div class="w-full">
                                     <label for="password_confirmation"
-                                        class="label text-lg text-ellipsis truncate">Confirm Password</label>
+                                        class="label text-lg text-ellipsis truncate">{{forms.c_password}}</label>
                                     <input type="password" formControlName="c_password"
                                         name="c_password" id="c_password" class="input p-3">
                                     <div *ngIf="registerForm.get('c_password')?.hasError('required') && registerForm.get('c_password')?.touched"
                                         class="input-error mt-1">
-                                        Confirmation password is required!
+                                        {{forms.c_password_req}}
                                     </div>
                                     <div class="input-error mt-1" *ngIf="this.registerForm.value.password !== this.registerForm.value.c_password">
-                                        Passwords don't match.
+                                        {{forms.c_password_err}}
                                       </div>
                                 </div>
                             </div>
@@ -83,9 +83,9 @@
                 <div class="my-5 flex flex-col-reverse md:flex-row items-center justify-between mx-5 h-full">
                     <div (click)="login()"
                         class="w-1/2 h-full hover:underline truncate hover:cursor-pointer text-center md:text-start font-medium text-gray-400 hover:text-gray-300">
-                        I have an account</div>
+                        {{buttons.have_acc}}</div>
                     <button (click)="register()"
-                        [classList]="true ? 'hover:bg-purple-500 button-secondary w-full md:w-1/2 p-4' : 'cursor-not-allowed button-secondary w-full md:w-1/2 p-4'">Register</button>
+                        [classList]="true ? 'hover:bg-purple-500 button-secondary w-full md:w-1/2 p-4' : 'cursor-not-allowed button-secondary w-full md:w-1/2 p-4'">{{buttons.register}}</button>
                 </div>
 
             </div>

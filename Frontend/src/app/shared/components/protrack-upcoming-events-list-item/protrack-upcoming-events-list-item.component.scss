@@ -1,0 +1,6 @@
+#list-item:hover{
+    @apply cursor-pointer;
+    #date{
+        @apply bg-zinc-900
+    }   
+}

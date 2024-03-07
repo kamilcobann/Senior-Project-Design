@@ -15,6 +15,9 @@ import { ProtrackSidebarListItemComponent } from './shared/components/protrack-s
 import { ProtrackNavbarListItemComponent } from './shared/components/protrack-navbar-list-item/protrack-navbar-list-item.component';
 import { ProtrackBoxComponent } from './shared/components/protrack-box/protrack-box.component';
 import { ProtrackProjectListItemComponent } from './shared/components/protrack-project-list-item/protrack-project-list-item.component';
+import { ProtrackUpcomingEventsListComponent } from './shared/components/protrack-upcoming-events-list/protrack-upcoming-events-list.component';
+import { ProtrackUpcomingEventsListItemComponent } from './shared/components/protrack-upcoming-events-list-item/protrack-upcoming-events-list-item.component';
+import { ProtrackProjectWidgetComponent } from './shared/components/protrack-project-widget/protrack-project-widget.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { ProtrackProjectListItemComponent } from './shared/components/protrack-p
     ProtrackSidebarListItemComponent,
     ProtrackNavbarListItemComponent,
     ProtrackBoxComponent,
-    ProtrackProjectListItemComponent
+    ProtrackProjectListItemComponent,
+    ProtrackUpcomingEventsListComponent,
+    ProtrackUpcomingEventsListItemComponent,
+    ProtrackProjectWidgetComponent
   ],
   imports: [
     BrowserModule,

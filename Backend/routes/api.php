@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,4 +20,15 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('register', 'register');
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
+});
+
+Route::controller(ProjectController::class)->middleware("auth")->group(function(){
+    Route::get('projects','getAllProjects');
+    Route::get('projects/{id}','getProjectById');
+    Route::delete('projects/{id}', 'deleteProjectById');
+    Route::post('projects', 'createProject');
+    Route::get('/user/projects','getAllProjectsOfUser');
+    Route::post('/projects/{id}/add-member', 'addMemberToProject');
+    Route::post('/projects/{id}/remove-member', 'removeMemberFromProject');
+    Route::put('/projects/{id}','updateProject');
 });

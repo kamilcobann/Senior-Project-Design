@@ -129,6 +129,13 @@
       <path value="$PROJECT_DIR$/Backend/vendor/nunomaduro/termwind" />
       <path value="$PROJECT_DIR$/Backend/vendor/graham-campbell/result-type" />
       <path value="$PROJECT_DIR$/Backend/vendor/dragonmantank/cron-expression" />
+      <path value="$PROJECT_DIR$/Backend/vendor/php-open-source-saver/jwt-auth" />
+      <path value="$PROJECT_DIR$/Backend/vendor/giggsey/libphonenumber-for-php" />
+      <path value="$PROJECT_DIR$/Backend/vendor/giggsey/locale" />
+      <path value="$PROJECT_DIR$/Backend/vendor/lcobucci/jwt" />
+      <path value="$PROJECT_DIR$/Backend/vendor/lcobucci/clock" />
+      <path value="$PROJECT_DIR$/Backend/vendor/propaganistas/laravel-phone" />
+      <path value="$PROJECT_DIR$/Backend/vendor/namshi/jose" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

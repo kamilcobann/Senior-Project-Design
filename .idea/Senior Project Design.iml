@@ -120,6 +120,13 @@
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/giggsey/libphonenumber-for-php" />
+      <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/giggsey/locale" />
+      <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/lcobucci/clock" />
+      <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/lcobucci/jwt" />
+      <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/namshi/jose" />
+      <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/php-open-source-saver/jwt-auth" />
+      <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/propaganistas/laravel-phone" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

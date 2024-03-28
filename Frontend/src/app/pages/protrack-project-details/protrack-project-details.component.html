@@ -28,16 +28,11 @@
 <div class="md:flex md:w-full">
   <app-protrack-sidebar></app-protrack-sidebar>
   <app-protrack-navbar></app-protrack-navbar>
-  <div class="w-full text-white md:ms-80 px-3 mt-3">
+  <div *ngIf="project" class=" w-full text-white md:ms-80 px-3">
     <div class="w-full flex justify-between mt-3 mb-12 items-center">
       <div class="flex-col">
-        <div class="md:text-3xl text-xl font-bold">Projects</div>
-        <div class="text-sm text-gray-400">Manage your projects.</div>
-      </div>
-      <div class="hidden md:block">
-        <div (click)="createProject()" class="flex hover:cursor-pointer bg-purple-500 button-secondary justify-center">
-          New Project
-        </div>
+        <div class="md:text-3xl text-xl font-bold">{{project.title}}</div>
+        <div class="text-sm text-gray-400">{{project.description}}</div>
       </div>
       <div class="md:hidden">
         <div class="flex  rounded-full px-4 hover:cursor-pointer bg-purple-500 button-secondary text-center">+
@@ -45,34 +40,11 @@
       </div>
     </div>
     <div class="w-full">
-      <div class="mt-4">
-        <div class="md:text-xl text-lg my-2 font-semibold">
-          Owned Projects
-        </div>
-        <app-protrack-box>
-          <app-protrack-project-list-item *ngFor="let item of ownedProjects"
-            [project]="item"></app-protrack-project-list-item>
-          <div class="w-full justify-center flex mt-3 mb-2">
-            <app-protrack-primary-button (click)="goToProjects()"></app-protrack-primary-button>
-          </div>
-        </app-protrack-box>
-      </div>
-      <div class="mt-4">
-        <div class="md:text-xl text-lg my-2 font-semibold">
-          Joined Projects
-        </div>
-        <app-protrack-box>
-          <app-protrack-project-list-item *ngFor="let item of joinedProjects"
-            [project]="item"></app-protrack-project-list-item>
-          <div class="w-full justify-center flex mt-3 mb-2">
-            <app-protrack-primary-button (click)="goToProjects()"></app-protrack-primary-button>
-          </div>
-        </app-protrack-box>
-      </div>
+
     </div>
   </div>
-  <div class="md:w-5/12 md:block hidden md:right-0 h-full md:ms-3 md:me-0 my-3 text-white">
-    <div class="text-white ms-4 font-bold text-lg mb-3 mt-8">Upcoming Events</div>
+  <div class="md:w-5/12 md:right-0 h-full md:ms-3 md:me-0 my-3 text-white">
+    <div class="text-white ms-4 font-bold text-lg mb-3">Upcoming Events</div>
     <app-protrack-upcoming-events-list></app-protrack-upcoming-events-list>
   </div>
 </div>

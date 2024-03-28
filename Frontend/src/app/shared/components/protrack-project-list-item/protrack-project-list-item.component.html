@@ -1,8 +1,8 @@
 <div class=" mx-3 my-2 flex  items-center justify-between">
     <div class="flex items-center md:w-1/2 w-full gap-3">
         <ng-icon name="heroUserCircle" class="text-4xl"></ng-icon>
-        <div class=" font-semibold">{{project.name}}</div>
-        <div class="">{{project.event_name}}</div>
+        <div class=" font-semibold">{{project!.title}}</div>
+        <div class="">{{project?.start_date}}</div>
     </div>
-    <div class="font-bold">{{project.event_deadline}}</div>
+    <div class="font-bold">{{project?.end_date}}</div>
 </div>

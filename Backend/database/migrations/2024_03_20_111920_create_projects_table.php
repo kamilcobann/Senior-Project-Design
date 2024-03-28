@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('description');
             $table->date('start_date');
             $table->date('end_date');
+            $table->string('status');
             $table->boolean('is_active');
             $table->foreignIdFor(\App\Models\User::class,'by_user_id')->constrained('users');
 

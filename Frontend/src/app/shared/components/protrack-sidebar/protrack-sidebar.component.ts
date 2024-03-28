@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./protrack-sidebar.component.scss']
 })
 export class ProtrackSidebarComponent implements OnInit{
-  
+
   sidebar_items = [
     {
       icon : "heroComputerDesktop",
@@ -16,7 +16,7 @@ export class ProtrackSidebarComponent implements OnInit{
     {
       icon : "heroTableCells",
       label : "Projects",
-      url : "/dashboard"
+      url : "/projects"
     },
     {
       icon : "heroUserGroup",
@@ -34,7 +34,7 @@ export class ProtrackSidebarComponent implements OnInit{
       url : "/dashboard"
     },
   ]
-  
+
   ngOnInit(): void {
 
   }

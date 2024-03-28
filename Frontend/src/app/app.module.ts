@@ -22,6 +22,8 @@ import { ProtrackUpcomingEventsListItemComponent } from './shared/components/pro
 import { ProtrackProjectWidgetComponent } from './shared/components/protrack-project-widget/protrack-project-widget.component';
 import { ProtrackProjectsComponent } from './pages/protrack-projects/protrack-projects.component';
 import { ProtrackPrimaryButtonComponent } from './shared/components/protrack-primary-button/protrack-primary-button.component';
+import { ProtrackCreateProjectComponent } from './pages/protrack-create-project/protrack-create-project.component';
+import { ProtrackProjectDetailsComponent } from './pages/protrack-project-details/protrack-project-details.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { ProtrackPrimaryButtonComponent } from './shared/components/protrack-pri
     ProtrackUpcomingEventsListItemComponent,
     ProtrackProjectWidgetComponent,
     ProtrackProjectsComponent,
-    ProtrackPrimaryButtonComponent
+    ProtrackPrimaryButtonComponent,
+    ProtrackCreateProjectComponent,
+    ProtrackProjectDetailsComponent
   ],
   imports: [
     BrowserModule,

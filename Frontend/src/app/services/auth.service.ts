@@ -9,21 +9,20 @@ import { User } from '../models/User';
 
 export class AuthService {
 
-  private uri:string="http://127.0.0.1:8000/api"; 
+  private uri:string="http://127.0.0.1:8000/api";
 
   constructor(
     private http:HttpClient
   ) { }
 
   login(user:User):Observable<any>{
-    console.log(user);
-    
+
     return this.http.post(this.uri+"/login",user);
   }
 
   register(user:User):Observable<any>{
     console.log(user);
-    
+
     return this.http.post(this.uri+"/register",user);
   }
 }

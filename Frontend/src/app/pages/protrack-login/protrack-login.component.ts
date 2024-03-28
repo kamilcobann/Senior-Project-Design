@@ -23,7 +23,7 @@ export class ProtrackLoginComponent implements OnInit{
   )
   {}
 
-  ngOnInit(): void 
+  ngOnInit(): void
   {
       this.loginForm = this.fb.group({
         email : ['',[Validators.required,Validators.email]],
@@ -36,12 +36,19 @@ export class ProtrackLoginComponent implements OnInit{
     if(this.loginForm.valid)
     {
       this.auth.login(this.loginForm.value).subscribe(res => {
-        sessionStorage.setItem('access_token', res.authorisation.token)
+        if(res.status){
+          sessionStorage.setItem('authorization',res.authorization.token);
+          this.dashboard();
+        }
       });
 
     }
   }
 
+  dashboard()
+  {
+    this.router.navigate(['/dashboard'])
+  }
   register()
   {
     this.router.navigate(['/register'])

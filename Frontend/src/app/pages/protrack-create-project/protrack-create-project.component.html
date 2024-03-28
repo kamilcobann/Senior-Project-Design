@@ -1,0 +1,91 @@
+<div class="w-full md:block hidden mt-4">
+  <div class="ms-72">
+    <div class="w-full flex justify-between items-center">
+      <div class="ms-11 w-1/6 flex rounded-full bg-zinc-700 py-2 ps-2 items-center">
+        <input type="text" class=" w-full bg-zinc-700 ms-2 text-white focus:outline-none" placeholder="Search">
+        <ng-icon name="heroMagnifyingGlass" class="text-white text-xl mx-4"></ng-icon>
+      </div>
+      <div class="me-11 w-1/4">
+        <div class="w-full flex items-center">
+          <div class="flex gap-4">
+            <ng-icon name="heroBell" class="text-white text-xl"></ng-icon>
+            <ng-icon name="heroInbox" class="text-white text-xl"></ng-icon>
+          </div>
+          <div class="text-white w-1/2 ms-4 flex items-center bg-zinc-950">
+            <ng-icon name="heroUser" class="text-white text-xl me-4"></ng-icon>
+            <select name="" id="" class="w-1/2 bg-zinc-950 flex">
+              <option class="hidden">Profile</option>
+              <option></option>
+              <option></option>
+              <option></option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="md:flex md:w-full">
+  <app-protrack-sidebar></app-protrack-sidebar>
+  <app-protrack-navbar></app-protrack-navbar>
+  <div class="w-full text-white md:ms-80 px-3 mt-3">
+    <div class="flex justify-start mt-3 mb-12">
+      <div class="flex-col">
+        <div class="md:text-3xl text-xl font-bold">
+          Create Project
+        </div>
+        <div class="text-sm text-gray-400">Fill out the form to create a new project.</div>
+      </div>
+    </div>
+    <div class="w-full mt-4">
+      <app-protrack-box>
+        <form [formGroup]="projectForm" class="mx-4 mb-4">
+          <div class="w-full ">
+            <label for="title" class="label text-lg ">Title</label>
+            <input type="text" formControlName="title" name="title" id="title" class="input p-2 bg-zinc-500 text-black">
+            <div *ngIf="projectForm.get('title')?.hasError('required') && projectForm.get('title')?.touched" class="input-error mt-1">
+                    Title of project is required
+                </div>
+          </div>
+          <div class="w-full ">
+            <label for="description" class="label text-lg">Description</label>
+            <textarea rows="5" formControlName="description" type="text" name="description" id="description"
+              class="input p-2 rounded-md text-black  bg-zinc-500"></textarea>
+            <div *ngIf="projectForm.get('description')?.hasError('required') && projectForm.get('description')?.touched" class="input-error mt-1">
+                    Description is required
+                </div>
+          </div>
+          <div class="w-full  flex justify-between items-center gap-4">
+            <div class="w-full">
+              <label for="start_date" class="label text-lg">Start Date</label>
+              <input type="date" formControlName="start_date" name="start_date" id="start_date" class="input p-2 rounded-md text-black  bg-zinc-500">
+              <div *ngIf="projectForm.get('start_date')?.hasError('required') && projectForm.get('start_date')?.touched" class="input-error mt-1">
+                    Start date is required
+                </div>
+            </div>
+            <div class="w-full">
+              <label for="end_date" class="label text-lg">End Date</label>
+              <input type="date" formControlName="end_date" name="end_date" id="end_date" class="input p-2 rounded-md text-black  bg-zinc-500">
+              <div *ngIf="projectForm.get('end_date')?.hasError('required') && projectForm.get('end_date')?.touched" class="input-error mt-1">
+                    End date is required
+                </div>
+            </div>
+          </div>
+        </form>
+        <!-- <div class="w-full justify-center flex mt-3 mb-2">
+                <app-protrack-primary-button></app-protrack-primary-button>
+            </div> -->
+      </app-protrack-box>
+      <div class="w-full flex justify-end">
+        <div class="w-1/2 flex items-center justify-between  gap-4 mt-4">
+          <app-protrack-primary-button [buttonText]="'Reset'" (click)="resetForm()" class="w-full"></app-protrack-primary-button>
+          <app-protrack-primary-button [buttonText]="'Create'" (click)="createProject()" class="w-full"></app-protrack-primary-button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="md:w-5/12 md:block hidden md:right-0 h-full md:ms-3 md:me-0 my-3 text-white">
+    <div class="text-white ms-4 font-bold text-lg mb-3 mt-8">Upcoming Events</div>
+    <app-protrack-upcoming-events-list></app-protrack-upcoming-events-list>
+  </div>
+</div>

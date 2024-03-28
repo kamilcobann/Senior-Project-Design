@@ -103,7 +103,8 @@ class ProjectController extends Controller
                     "description" => "string|required|min:0|max:255",
                     "start_date" => "date|required|after:today",
                     "end_date" => "date|required|after:start_date",
-                    "is_active" => "boolean"
+                    "is_active" => "boolean",
+                    "status" => "string"
                 ])
             );
 

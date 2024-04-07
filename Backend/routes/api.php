@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\KanbanController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +32,16 @@ Route::controller(ProjectController::class)->middleware("auth")->group(function(
     Route::post('/projects/{id}/add-member', 'addMemberToProject');
     Route::post('/projects/{id}/remove-member', 'removeMemberFromProject');
     Route::put('/projects/{id}','updateProject');
+});
+
+Route::controller(KanbanController::class)->middleware("auth")->group(function(){
+    Route::post('projects/{id}/kanbans','createKanban');
+    Route::get('kanbans','getAllKanbans');
+    Route::get('kanbans/{id}','getKanbanById');
+    Route::get('user/kanbans','getAllKanbansOfUser');
+    Route::get('projects/{id}/kanbans','getAllKanbansOfProject');
+    Route::put('kanbans/{id}','updateKanban');
+    Route::delete('kanbans/{id}','deleteKanban');
+    Route::post('/kanbans/{id}/add-member', 'addMemberToKanban');
+    Route::post('/kanbans/{id}/remove-member', 'removeMemberFromKanban');
 });

@@ -13,7 +13,7 @@ class ProjectController extends Controller
     {
 
         try {
-            $projects = Project::all();
+            $projects = Project::withCount('kanbans')->get();
 
             return response()->json([
                 "status" => true,
@@ -54,7 +54,7 @@ class ProjectController extends Controller
     {
 
         try {
-            $project = Project::with('members')->withCount('members')->findOrFail($id);
+            $project = Project::with('members')->with('kanbans')->withCount('members')->findOrFail($id);
 
             return response()->json([
                 "status" => true,

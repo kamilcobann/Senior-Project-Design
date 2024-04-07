@@ -36,4 +36,8 @@ class Project extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function kanbans():HasMany{
+        return $this->hasMany(Kanban::class,'by_project_id');
+    }
+
 }

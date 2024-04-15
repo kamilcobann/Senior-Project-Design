@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KanbanController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\KanbanListController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,4 +45,12 @@ Route::controller(KanbanController::class)->middleware("auth")->group(function()
     Route::delete('kanbans/{id}','deleteKanban');
     Route::post('/kanbans/{id}/add-member', 'addMemberToKanban');
     Route::post('/kanbans/{id}/remove-member', 'removeMemberFromKanban');
+});
+
+Route::controller(KanbanListController::class)->middleware("auth")->group(function(){
+    Route::post('/kanbans/{id}/kanban-list','createKanbanList');
+    Route::get('/kanbans/{id}/kanban-list','getKanbanLists');
+    Route::put('/kanbans/{kanbanId}/kanban-list/{kanbanListId}','updateKanbanList');
+    Route::delete('/kanbans/{kanbanId}/kanban-list/{kanbanListId}','deleteKanbanList');
+    Route::get('/kanbans/{kanbanId}/kanban-list/{kanbanListId}','getKanbanListById');
 });

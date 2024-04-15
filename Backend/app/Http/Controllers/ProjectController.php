@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kanban;
 use App\Models\Project;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,8 +13,7 @@ class ProjectController extends Controller
     {
 
         try {
-            $projects = Project::withCount('kanbans')->get();
-
+            $projects = Project::withCount('kanbans')->with(['members','kanbans'])->get();
             return response()->json([
                 "status" => true,
                 "message" => "All projects are successfully retrieved.",
@@ -33,7 +32,7 @@ class ProjectController extends Controller
     {
 
         try {
-            $projects = Project::where('by_user_id', $request->user()->id)->get();
+            $projects = Project::where('by_user_id', $request->user()->id)->with(['members','kanbans'])->get();
 
             return response()->json([
                 "status" => true,
@@ -54,7 +53,7 @@ class ProjectController extends Controller
     {
 
         try {
-            $project = Project::with('members')->with('kanbans')->withCount('members')->findOrFail($id);
+            $project = Project::with(['members','kanbans'])->withCount('members')->findOrFail($id);
 
             return response()->json([
                 "status" => true,
@@ -125,9 +124,7 @@ class ProjectController extends Controller
     public function updateProject(Request $request, $id)
     {
         try {
-
-            $project = Project::whereId($id)->where("by_user_id", $request->user()->id)->get();
-
+            $project = Project::whereId($id)->where("by_user_id", $request->user()->id)->with(['members','kanbans'])->first();
             $validator = Validator::make($request->all(), [
                 "title" => "string|min:0|max:100",
                 "description" => "string|min:0|max:255",
@@ -171,10 +168,6 @@ class ProjectController extends Controller
             // Find the project
             $project = Project::findOrFail($id);
 
-            // Find the user
-            $user = User::findOrFail($request->userId);
-
-
             // Check if the user is already a member of the project
             if ($project->members()->where('user_id', $request->userId)->exists()) {
                 return response()->json([
@@ -185,6 +178,7 @@ class ProjectController extends Controller
 
             // Attach the user to the project
             $project->members()->attach($request->userId);
+            $project = Project::with(['members','kanbans'])->withCount('members')->findOrFail($id);
 
             return response()->json([
                 "status" => true,
@@ -213,10 +207,15 @@ class ProjectController extends Controller
                     "message" => "User is not a member of the project."
                 ], 400);
             }
-
+            $kanbans= Kanban::with('members')->get();
+            foreach ($kanbans as $kanban) {
+                $kanban->members()->detach($request->userId);
+            }
 
             // Attach the user to the project
             $project->members()->detach($request->userId);
+
+            $project = Project::with(['members','kanbans'])->withCount('members')->findOrFail($id);
 
             return response()->json([
                 "status" => true,

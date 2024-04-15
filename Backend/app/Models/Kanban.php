@@ -33,4 +33,8 @@ class Kanban extends Model
         return $this->belongsTo(Project::class, "by_project_id");
     }
 
+    public function kanbanLists(): HasMany{
+        return $this->hasMany(KanbanList::class,'by_kanban_id');
+    }
+
 }

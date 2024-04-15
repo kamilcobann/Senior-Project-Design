@@ -14,7 +14,6 @@ class KanbanController extends Controller
     public function createKanban(Request $request, int $projectId)
     {
 
-        $project = Project::findOrFail($projectId);
 
         $validator = Validator::make($request->all(), [
             "name" => "string|required|max:255",
@@ -59,7 +58,7 @@ class KanbanController extends Controller
     {
 
         try {
-            $kanbans = Kanban::all();
+            $kanbans = Kanban::with(['members','relatedProject','kanbanLists'])->get();
 
             return response()->json([
                 "status" => true,
@@ -117,8 +116,7 @@ class KanbanController extends Controller
     {
 
         try {
-            // $kanban = Kanban::with('members')->withCount('members')->findOrFail($id);
-            $kanban = Kanban::findOrFail($id);
+           $kanban = Kanban::with(['members','kanbanLists'])->whereId($id)->first();
             return response()->json([
                 "status" => true,
                 "message" => "Kanban successfully retrieved.",

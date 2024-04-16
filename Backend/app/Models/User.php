@@ -83,5 +83,15 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsToMany(Kanban::class);
     }
 
+    public function assignedTickets():BelongsToMany
+    {
+        return $this->belongsToMany(Ticket::class);
+    }
+
+    public function createdTickets():HasMany
+    {
+        return $this->hasMany(Ticket::class,'by_user_id');
+    }
+
 
 }

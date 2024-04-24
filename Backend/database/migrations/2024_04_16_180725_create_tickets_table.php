@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description');
-            $table->foreignIdFor(\App\Models\KanbanList::class,'by_user_id')->constrained('users');
+            $table->string('description')->nullable();
+            $table->foreignIdFor(\App\Models\User::class,'by_user_id')->constrained('users');
+            $table->foreignIdFor(\App\Models\KanbanList::class,'by_kanban_list_id')->constrained('kanban_lists');
             $table->timestamps();
 
         });

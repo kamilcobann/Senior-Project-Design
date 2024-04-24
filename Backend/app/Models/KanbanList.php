@@ -26,6 +26,6 @@ class KanbanList extends Model
      */
     public function tickets(): HasMany
     {
-        return $this->hasMany(Ticket::class, 'by_ticket_id');
+        return $this->hasMany(Ticket::class,'by_kanban_list_id');
     }
 }

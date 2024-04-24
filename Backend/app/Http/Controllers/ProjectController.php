@@ -13,7 +13,7 @@ class ProjectController extends Controller
     {
 
         try {
-            $projects = Project::withCount('kanbans')->with(['members','kanbans'])->get();
+            $projects = Project::withCount('kanbans')->with(['members','kanbans.kanbanLists'])->get();
             return response()->json([
                 "status" => true,
                 "message" => "All projects are successfully retrieved.",
@@ -32,7 +32,7 @@ class ProjectController extends Controller
     {
 
         try {
-            $projects = Project::where('by_user_id', $request->user()->id)->with(['members','kanbans'])->get();
+            $projects = Project::where('by_user_id', $request->user()->id)->with(['members','kanbans.kanbanLists'])->get();
 
             return response()->json([
                 "status" => true,
@@ -53,7 +53,7 @@ class ProjectController extends Controller
     {
 
         try {
-            $project = Project::with(['members','kanbans'])->withCount('members')->findOrFail($id);
+            $project = Project::with(['members','kanbans.kanbanLists'])->withCount('members')->findOrFail($id);
 
             return response()->json([
                 "status" => true,
@@ -124,7 +124,7 @@ class ProjectController extends Controller
     public function updateProject(Request $request, $id)
     {
         try {
-            $project = Project::whereId($id)->where("by_user_id", $request->user()->id)->with(['members','kanbans'])->first();
+            $project = Project::whereId($id)->where("by_user_id", $request->user()->id)->with(['members','kanbans.kanbanLists'])->first();
             $validator = Validator::make($request->all(), [
                 "title" => "string|min:0|max:100",
                 "description" => "string|min:0|max:255",
@@ -178,7 +178,7 @@ class ProjectController extends Controller
 
             // Attach the user to the project
             $project->members()->attach($request->userId);
-            $project = Project::with(['members','kanbans'])->withCount('members')->findOrFail($id);
+            $project = Project::with(['members','kanbans.kanbanLists'])->withCount('members')->findOrFail($id);
 
             return response()->json([
                 "status" => true,
@@ -215,7 +215,7 @@ class ProjectController extends Controller
             // Attach the user to the project
             $project->members()->detach($request->userId);
 
-            $project = Project::with(['members','kanbans'])->withCount('members')->findOrFail($id);
+            $project = Project::with(['members','kanbans.kanbanLists'])->withCount('members')->findOrFail($id);
 
             return response()->json([
                 "status" => true,

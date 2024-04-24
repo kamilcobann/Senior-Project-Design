@@ -58,7 +58,7 @@ class KanbanController extends Controller
     {
 
         try {
-            $kanbans = Kanban::with(['members','relatedProject','kanbanLists'])->get();
+            $kanbans = Kanban::with(['members','relatedProject','kanbanLists.tickets'])->get();
 
             return response()->json([
                 "status" => true,
@@ -77,7 +77,7 @@ class KanbanController extends Controller
     public function getAllKanbansOfUser(Request $request)
     {
         try {
-            $kanbans = Kanban::where('by_user_id', auth()->id())->get();
+            $kanbans = Kanban::where('by_user_id', auth()->id())->with(['members','relatedProject','kanbanLists.tickets'])->get();
 
             return response()->json([
                 "status" => true,
@@ -96,7 +96,7 @@ class KanbanController extends Controller
     public function getAllKanbansOfProject(Request $request, int $projectId)
     {
         try {
-            $kanbans = Kanban::where('by_project_id', $projectId)->get();
+            $kanbans = Kanban::where('by_project_id', $projectId)->with(['members','relatedProject','kanbanLists.tickets'])->get();
 
             return response()->json([
                 "status" => true,
@@ -116,7 +116,7 @@ class KanbanController extends Controller
     {
 
         try {
-           $kanban = Kanban::with(['members','kanbanLists'])->whereId($id)->first();
+           $kanban = Kanban::with(['members','kanbanLists.tickets','relatedProject'])->whereId($id)->first();
             return response()->json([
                 "status" => true,
                 "message" => "Kanban successfully retrieved.",
@@ -135,7 +135,7 @@ class KanbanController extends Controller
     {
 
         try {
-            $kanban = Kanban::findOrFail($kanbanId);
+            $kanban = Kanban::with(['members','kanbanLists.tickets','relatedProject'])->whereId($kanbanId)->first();
 
             $validator = Validator::make($request->all(), [
                 "name" => "string|max:255",
@@ -201,7 +201,7 @@ class KanbanController extends Controller
                 }
                 $kanban->members()->attach($request->userId);
 
-                $kanban = Kanban::with('members')->whereId($kanbanId)->get();
+                $kanban = Kanban::with(['members','kanbanLists.tickets','relatedProject'])->whereId($kanbanId)->get();
                 return response()->json([
                     "status" => true,
                     "message" => "User added to kanban successfully",
@@ -242,7 +242,7 @@ class KanbanController extends Controller
             }
 
             $kanban->members()->detach($request->userId);
-            $kanban = Kanban::with('members')->whereId($kanbanId)->get();
+            $kanban = Kanban::with(['members','kanbanLists.tickets','relatedProject'])->whereId($kanbanId)->get();
 
             return response()->json([
                 "status" => true,

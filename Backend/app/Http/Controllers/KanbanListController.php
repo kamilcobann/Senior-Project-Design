@@ -25,7 +25,7 @@ class KanbanListController extends Controller
                 ])
             );
 
-            $kanban = Kanban::with('kanbanLists')->whereId($kanbanId)->get();
+            $kanban = Kanban::with('kanbanLists.tickets')->whereId($kanbanId)->get();
 
             return response()->json([
                 "status" => true,
@@ -45,7 +45,7 @@ class KanbanListController extends Controller
         try {
             if (!Kanban::findOrFail($kanbanId)) {
             }
-            $kanbanList = KanbanList::where('by_kanban_id',$kanbanId)->get();
+            $kanbanList = KanbanList::where('by_kanban_id',$kanbanId)->with('tickets')->get();
             return response()->json([
                 "status" => true,
                 "message" => "Kanban Lists retrieved successfully.",
@@ -66,11 +66,12 @@ class KanbanListController extends Controller
             if (!Kanban::findOrFail($kanbanId) || !KanbanList::findOrFail($kanbanListId)) {
 
             }
-            $kanbanList = KanbanList::whereId($kanbanListId)->where('by_kanban_id',$kanbanId)->get();
+            $kanbanList = KanbanList::whereId($kanbanListId)->where('by_kanban_id',$kanbanId)->with('tickets')->first();
             return response()->json([
                 "status" => true,
                 "message" => "Kanban List retrieved successfully",
-                "kanban_list" => $kanbanList
+                "kanban_list" => $kanbanList,
+
             ]);
         } catch (\Throwable $th) {
             return response()->json([
@@ -82,7 +83,7 @@ class KanbanListController extends Controller
 
     public function updateKanbanList(Request $request, int $kanbanId,int $kanbanListId){
         try {
-            $kanbanList = KanbanList::whereId($kanbanListId)->where('by_kanban_id',$kanbanId)->first();
+            $kanbanList = KanbanList::whereId($kanbanListId)->where('by_kanban_id',$kanbanId)->with('tickets')->first();
             $kanbanList->title = $request->title ?? $kanbanList->title;
             $kanbanList->save();
 

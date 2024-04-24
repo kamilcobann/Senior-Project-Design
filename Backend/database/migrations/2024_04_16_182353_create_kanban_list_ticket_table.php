@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('kanban_list_ticket', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(\App\Models\Ticket::class,'ticket_id')->constrained('tickets')->onDelete('cascade');
-            $table->foreignIdFor(\App\Models\User::class,'kanban_list_id')->constrained('kanban_lists')->onDelete('cascade');
+            $table->foreignIdFor(\App\Models\KanbanList::class,'kanban_list_id')->constrained('kanban_lists')->onDelete('cascade');
             $table->timestamps();
         });
     }

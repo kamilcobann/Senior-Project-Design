@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Ticket extends Model
 {
@@ -14,7 +15,8 @@ class Ticket extends Model
 
     protected $fillable = [
         'title',
-        'description'
+        'description',
+        "by_kanban_list_id"
     ];
 
     /**
@@ -27,8 +29,14 @@ class Ticket extends Model
         return $this->belongsTo(KanbanList::class, 'by_kanban_list_id');
     }
 
-    public function assignedUsers(): HasMany
+    public function assignedUsers(): BelongsToMany
     {
-        return $this->hasMany(User::class, 'by_user_id');
+        // return $this->hasMany(User::class, 'by_user_id');
+        return $this->belongsToMany(User::class);
+    }
+
+    public function owner(): BelongsTo
+    {
+        return $this->belongsTo(User::class,'by_user_id');
     }
 }

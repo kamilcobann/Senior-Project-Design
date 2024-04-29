@@ -42,43 +42,50 @@ class AuthController extends Controller
     }
 
     public function register(Request $request){
-        if(!$request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-            'address' => 'required|string',
-            'phone' => 'required|phone:TR|unique:users',
-            'c_password' => 'required|string'
-        ])){
+        try {
+            if(!$request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users',
+                'password' => 'required|string|min:6',
+                'address' => 'required|string',
+                'phone' => 'required|phone:TR|unique:users',
+                'c_password' => 'required|string'
+            ])){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Invalid credentials',
+                ], 400);
+            }
+
+            if(!$user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'address' => $request->address,
+                'phone' => $request->phone
+            ])){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'User cannot be created.',
+                ], 400);
+            }
+
+            $token = Auth::login($user);
             return response()->json([
-                'status' => false,
-                'message' => 'Invalid credentials',
+                'status' => true,
+                'message' => 'User created successfully',
+                'user' => $user,
+                'authorisation' => [
+                    'token' => $token,
+                    'type' => 'bearer',
+                ]
+            ],200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                "status" => false,
+                "message" => $th->getMessage()
             ], 400);
         }
-
-        if(!$user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'address' => $request->address,
-            'phone' => $request->phone
-        ])){
-            return response()->json([
-                'status' => false,
-                'message' => 'User cannot be created.',
-            ], 400);
-        }
-
-        $token = Auth::login($user);
-        return response()->json([
-            'status' => true,
-            'message' => 'User created successfully',
-            'user' => $user,
-            'authorisation' => [
-                'token' => $token,
-                'type' => 'bearer',
-            ]
-        ],200);
     }
 
     public function logout()

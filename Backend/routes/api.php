@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KanbanController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\KanbanListController;
+use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,4 +54,17 @@ Route::controller(KanbanListController::class)->middleware("auth")->group(functi
     Route::put('/kanbans/{kanbanId}/kanban-list/{kanbanListId}','updateKanbanList');
     Route::delete('/kanbans/{kanbanId}/kanban-list/{kanbanListId}','deleteKanbanList');
     Route::get('/kanbans/{kanbanId}/kanban-list/{kanbanListId}','getKanbanListById');
+});
+
+Route::controller(TicketController::class)->middleware("auth")->group(function(){
+    Route::post('/kanban-list/{kanbanListId}/tickets','createTicket');
+    Route::get('/tickets','getAllTickets');
+    Route::get('/user/tickets','getAllTicketsCreatedFromUser');
+    Route::get('/tickets/users','getAssignedTickets');
+    Route::get('/tickets/{id}','getTicketById');
+    Route::delete('tickets/{id}','deleteTicketById');
+    Route::post('/tickets/{id}/add-member','addMemberToTicket');
+    Route::post('/tickets/{id}/remove-member','removeMemberFromTicket');
+    Route::put('/tickets/{id}','updateTicketById');
+
 });

@@ -13,7 +13,7 @@ class ProjectController extends Controller
     {
 
         try {
-            $projects = Project::withCount('kanbans')->with(['members','kanbans.kanbanLists'])->get();
+            $projects = Project::withCount('kanbans')->with(['members','kanbans.kanbanLists.tickets'])->get();
             return response()->json([
                 "status" => true,
                 "message" => "All projects are successfully retrieved.",
@@ -53,7 +53,7 @@ class ProjectController extends Controller
     {
 
         try {
-            $project = Project::with(['members','kanbans.kanbanLists'])->withCount('members')->findOrFail($id);
+            $project = Project::with(['members','kanbans.kanbanLists.tickets'])->withCount('members')->findOrFail($id);
 
             return response()->json([
                 "status" => true,

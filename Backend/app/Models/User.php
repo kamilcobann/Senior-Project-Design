@@ -93,5 +93,14 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Ticket::class,'by_user_id');
     }
 
+        /**
+     * Get all of the comments for the Comment
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function createdComments(): HasMany
+    {
+        return $this->hasMany(Comment::class, 'by_user_id');
+    }
 
 }

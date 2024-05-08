@@ -39,4 +39,9 @@ class Ticket extends Model
     {
         return $this->belongsTo(User::class,'by_user_id');
     }
+
+    public function comments():HasMany
+    {
+        return $this->hasMany(Comment::class,'by_ticket_id');
+    }
 }

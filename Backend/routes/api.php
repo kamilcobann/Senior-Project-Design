@@ -68,3 +68,6 @@ Route::controller(TicketController::class)->middleware("auth")->group(function()
     Route::put('/tickets/{id}','updateTicketById');
 
 });
+
+
+Route::controller('users', 'UserController');

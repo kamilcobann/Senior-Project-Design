@@ -16,7 +16,7 @@ class TicketController extends Controller
     {
 
         try {
-            $ticket = Ticket::with(['assignedUsers'])->whereId($id)->get();
+            $ticket = Ticket::with(['assignedUsers','comments'])->whereId($id)->get();
             return response()->json([
                 "status" => true,
                 "message" => "Ticket successfully retrieved.",
@@ -78,7 +78,7 @@ class TicketController extends Controller
     public function getAllTickets()
     {
         try {
-            $tickets = Ticket::get();
+            $tickets = Ticket::with(['assignedUsers','comments'])->get();
             return response()->json([
                 "status" => true,
                 "message" => "Tickets successfully retrieved.",
@@ -97,7 +97,7 @@ class TicketController extends Controller
     public function getAllTicketsCreatedFromUser(Request $request)
     {
         try {
-            $tickets = Ticket::where('by_user_id', $request->user()->id)->get();
+            $tickets = Ticket::where('by_user_id', $request->user()->id)->with(['assignedUsers','comments'])->get();
             return response()->json([
                 "status" => true,
                 "message" => "Tickets successfully retrieved.",
@@ -116,7 +116,7 @@ class TicketController extends Controller
     {
         try {
 
-            $tickets = Ticket::where('by_user_id', $request->user()->id)->get();
+            $tickets = Ticket::where('by_user_id', $request->user()->id)->with(['assignedUsers','comments'])->get();
             return response()->json([
                 "status" => true,
                 "message" => "Tickets successfully retrieved.",
@@ -172,7 +172,7 @@ class TicketController extends Controller
                 }
 
                 $ticket->assignedUsers()->attach($request->userId);
-                $ticket = Ticket::with(['assignedUsers', 'owner'])->whereId($id)->get();
+                $ticket = Ticket::with(['assignedUsers', 'owner','comments'])->whereId($id)->get();
                 return response()->json([
                     "status" => true,
                     "message" => "User added to ticket successfully",
@@ -218,7 +218,7 @@ class TicketController extends Controller
             }
 
             $ticket->assignedUsers()->detach($request->userId);
-            $ticket = Ticket::with(['assignedUsers', 'owner'])->whereId($id)->get();
+            $ticket = Ticket::with(['assignedUsers', 'owner','comments'])->whereId($id)->get();
 
             return response()->json([
                 "status" => true,
@@ -235,7 +235,7 @@ class TicketController extends Controller
 
     public function updateTicketById(Request $request,$id){
         try{
-            $ticket = Ticket::with(['assignedUsers'])->whereId($id)->first();
+            $ticket = Ticket::with(['assignedUsers','owner','comments'])->whereId($id)->first();
             $validator = Validator::make($request->all(),[
                 "title" => "string|min:0|max:255",
                 "description" => "string|min:0|max:255"

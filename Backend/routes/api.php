@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\KanbanController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\KanbanListController;
@@ -70,4 +71,13 @@ Route::controller(TicketController::class)->middleware("auth")->group(function()
 });
 
 
-Route::controller('users', 'UserController');
+Route::controller(CommentController::class)->group(function(){
+    Route::post('/tickets/{ticketId}/comments','createComment');
+    Route::get('/comments','getAllComments');
+    Route::get('/tickets/{ticketId}/comments','getAllCommentsOfTicket');
+    Route::get('/user/comments','getAllCommentsOfUser');
+    Route::get('/comments/{commentId}','getCommentById');
+    Route::put('/comments/{commentId}','updateComment');
+    Route::delete('/comments/{commentId}','deleteComment');
+
+});

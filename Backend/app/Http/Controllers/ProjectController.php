@@ -13,7 +13,7 @@ class ProjectController extends Controller
     {
 
         try {
-            $projects = Project::withCount('kanbans')->with(['members','kanbans.kanbanLists.tickets'])->get();
+            $projects = Project::withCount('kanbans')->with(['members','kanbans.kanbanLists.tickets.comments'])->get();
             return response()->json([
                 "status" => true,
                 "message" => "All projects are successfully retrieved.",
@@ -32,7 +32,7 @@ class ProjectController extends Controller
     {
 
         try {
-            $projects = Project::where('by_user_id', $request->user()->id)->with(['members','kanbans.kanbanLists'])->get();
+            $projects = Project::where('by_user_id', $request->user()->id)->with(['members','kanbans.kanbanLists.tickets.comments'])->get();
 
             return response()->json([
                 "status" => true,
@@ -53,7 +53,7 @@ class ProjectController extends Controller
     {
 
         try {
-            $project = Project::with(['members','kanbans.kanbanLists.tickets'])->withCount('members')->findOrFail($id);
+            $project = Project::with(['members','kanbans.kanbanLists.tickets.comments'])->withCount('members')->findOrFail($id);
 
             return response()->json([
                 "status" => true,
@@ -178,7 +178,7 @@ class ProjectController extends Controller
 
             // Attach the user to the project
             $project->members()->attach($request->userId);
-            $project = Project::with(['members','kanbans.kanbanLists'])->withCount('members')->findOrFail($id);
+            $project = Project::with(['members','kanbans.kanbanLists.tickets.comments'])->withCount('members')->findOrFail($id);
 
             return response()->json([
                 "status" => true,
@@ -215,7 +215,7 @@ class ProjectController extends Controller
             // Attach the user to the project
             $project->members()->detach($request->userId);
 
-            $project = Project::with(['members','kanbans.kanbanLists'])->withCount('members')->findOrFail($id);
+            $project = Project::with(['members','kanbans.kanbanLists.tickets.comments'])->withCount('members')->findOrFail($id);
 
             return response()->json([
                 "status" => true,

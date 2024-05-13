@@ -25,7 +25,7 @@ class KanbanListController extends Controller
                 ])
             );
 
-            $kanban = Kanban::with('kanbanLists.tickets')->whereId($kanbanId)->get();
+            $kanban = Kanban::with('kanbanLists.tickets.comments')->whereId($kanbanId)->get();
 
             return response()->json([
                 "status" => true,
@@ -66,7 +66,7 @@ class KanbanListController extends Controller
             if (!Kanban::findOrFail($kanbanId) || !KanbanList::findOrFail($kanbanListId)) {
 
             }
-            $kanbanList = KanbanList::whereId($kanbanListId)->where('by_kanban_id',$kanbanId)->with('tickets')->first();
+            $kanbanList = KanbanList::whereId($kanbanListId)->where('by_kanban_id',$kanbanId)->with('tickets.comments')->first();
             return response()->json([
                 "status" => true,
                 "message" => "Kanban List retrieved successfully",
@@ -83,7 +83,7 @@ class KanbanListController extends Controller
 
     public function updateKanbanList(Request $request, int $kanbanId,int $kanbanListId){
         try {
-            $kanbanList = KanbanList::whereId($kanbanListId)->where('by_kanban_id',$kanbanId)->with('tickets')->first();
+            $kanbanList = KanbanList::whereId($kanbanListId)->where('by_kanban_id',$kanbanId)->with('tickets.comments')->first();
             $kanbanList->title = $request->title ?? $kanbanList->title;
             $kanbanList->save();
 

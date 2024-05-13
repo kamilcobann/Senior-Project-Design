@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+// use Ahmedash95\Sentimento\Facade\Sentimento;
 
 use App\Models\Comment;
 use App\Models\Ticket;
@@ -87,13 +88,14 @@ class CommentController extends Controller
 
     public function getCommentById($commentId)
     {
+
         try {
             $comment = Comment::whereId($commentId)->with(['ticket','owner'])->first();
-
             return response()->json([
                 "status" => true,
                 "message" => "Comment are successfully retrieved.",
-                "comment" => $comment
+                "comment" => $comment,
+                // "analysis" =>Sentimento::analyze($comment->content)
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([

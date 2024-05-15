@@ -15,6 +15,7 @@
         "laravel/tinker": "^2.8",
         "php-open-source-saver/jwt-auth": "^2.1",
         "propaganistas/laravel-phone": "^5.1",
+        "pusher/pusher-php-server": "^7.2",
         "vyuldashev/laravel-openapi": "^1.12"
     },
     "require-dev": {

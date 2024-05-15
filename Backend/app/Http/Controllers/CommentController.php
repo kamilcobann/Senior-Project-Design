@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 // use Ahmedash95\Sentimento\Facade\Sentimento;
-
+use Google\Cloud\Core\ServiceBuilder;
+use Sentiment\Analyzer;
 use App\Models\Comment;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
@@ -12,14 +13,32 @@ class CommentController extends Controller
 {
     public function createComment(Request $request, $ticketId)
     {
-        try {
-            $comment = $request->user()->createdComments()->create(
-                $request->validate([
-                    "content" => 'string|required',
-                    "by_ticket_id" => $ticketId
-                ])
-            );
+        $validator = Validator::make($request->all(), [
+            "content" => "string|required|max:255"
+        ]);
 
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            return response()->json([
+                "status" => false,
+                "message" => $errors
+            ], 400);
+        }
+
+        try {
+            if (!$comment = $request->user()->createdComments()->create([
+                "content" => $request->content,
+                "by_ticket_id" => $ticketId
+            ])) {
+
+                return response()->json([
+                    "status" => false,
+                    "message" => "Comment creation failed."
+                ], 400);
+            }
+
+            $ticket = Ticket::findOrFail($ticketId);
+            $ticket->comments()->save($comment);
             return response()->json([
                 "status" => true,
                 "message" => "Comment created.",
@@ -33,32 +52,48 @@ class CommentController extends Controller
         }
     }
 
-
     public function getAllComments()
     {
+        $analyzer = new Analyzer();
+
         try {
-            $comments = Comment::with(['owner','ticket'])->get();
+            $comments = Comment::with(['ticket', 'owner'])->get();
+            $commentsWithAnalysis = $comments->map(function ($comment) use ($analyzer) {
+                return [
+                    "comment" => $comment,
+                    "analysis" => $analyzer->getSentiment($comment->content)
+                ];
+            });
+
             return response()->json([
                 "status" => true,
-                "message" => "All comments are successfully retrieved.",
-                "comments" => $comments
+                "message" => "Comments are successfully retrieved.",
+                "comments" => $commentsWithAnalysis
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
                 "status" => false,
-                "message" => $th->getMessage()
+                "message" => $th->getMessage(),
             ], 400);
         }
     }
 
     public function getAllCommentsOfTicket($ticketId)
     {
+        $analyzer = new Analyzer();
+
         try {
-            $comments = Comment::where('by_ticket_id', $ticketId)->with(['ticket','owner'])->get();
+            $comments = Comment::where('by_ticket_id', $ticketId)->with(['ticket', 'owner'])->get();
+            $commentsWithAnalysis = $comments->map(function ($comment) use ($analyzer) {
+                return [
+                    "comment" => $comment,
+                    "analysis" => $analyzer->getSentiment($comment->content)
+                ];
+            });
             return response()->json([
                 "status" => true,
                 "message" => "Comments retrieved.",
-                "comments" => $comments
+                "comments" => $commentsWithAnalysis
             ]);
         } catch (\Throwable $th) {
             return response()->json([
@@ -70,13 +105,20 @@ class CommentController extends Controller
 
     public function getAllCommentsOfUser(Request $request)
     {
-        try {
-            $comments = Comment::where('by_user_id', $request->user()->id)->with(['ticket','owner'])->get();
+        $analyzer = new Analyzer();
 
+        try {
+            $comments = Comment::where('by_user_id', $request->user()->id)->with(['ticket', 'owner'])->get();
+            $commentsWithAnalysis = $comments->map(function ($comment) use ($analyzer) {
+                return [
+                    "comment" => $comment,
+                    "analysis" => $analyzer->getSentiment($comment->content)
+                ];
+            });
             return response()->json([
                 "status" => true,
                 "message" => "Comments are successfully retrieved.",
-                "comments" => $comments
+                "comments" => $commentsWithAnalysis
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
@@ -88,14 +130,15 @@ class CommentController extends Controller
 
     public function getCommentById($commentId)
     {
+        $analyzer = new Analyzer();
 
         try {
-            $comment = Comment::whereId($commentId)->with(['ticket','owner'])->first();
+            $comment = Comment::whereId($commentId)->with(['ticket', 'owner'])->first();
             return response()->json([
                 "status" => true,
                 "message" => "Comment are successfully retrieved.",
                 "comment" => $comment,
-                // "analysis" =>Sentimento::analyze($comment->content)
+                "analysis" => $analyzer->getSentiment($comment->content)
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
@@ -105,20 +148,20 @@ class CommentController extends Controller
         }
     }
 
-    public function updateComment(Request $request,$commentId)
+    public function updateComment(Request $request, $commentId)
     {
         try {
-            $comment = Comment::whereId($commentId)->with(['members','kanbans.kanbanLists'])->first();
+            $comment = Comment::whereId($commentId)->with(['members', 'kanbans.kanbanLists'])->first();
             $validator = Validator::make($request->all(), [
                 "content" => "string|required"
             ]);
 
-            if($validator->fails()){
+            if ($validator->fails()) {
                 $errors = $validator->errors();
                 return response()->json([
-                    "status"=>false,
-                    "message"=>$errors,
-                ],400);
+                    "status" => false,
+                    "message" => $errors,
+                ], 400);
             }
 
             $comment->content = $request->content;
@@ -135,7 +178,6 @@ class CommentController extends Controller
                 "message" => $th->getMessage()
             ], 400);
         }
-
     }
 
     public function deleteCommentById($commentId)

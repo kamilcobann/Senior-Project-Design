@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\KanbanController;
 use App\Http\Controllers\ProjectController;
@@ -81,3 +82,5 @@ Route::controller(CommentController::class)->group(function(){
     Route::delete('/comments/{commentId}','deleteComment');
 
 });
+
+Route::post('/messages',[ChatController::class,'message']);

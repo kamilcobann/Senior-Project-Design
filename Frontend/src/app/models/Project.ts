@@ -1,3 +1,5 @@
+import { User } from "./User";
+
 export interface Project{
   id?:String;
   title?:String;
@@ -6,4 +8,6 @@ export interface Project{
   end_date?:String;
   is_active?:Boolean;
   status?:String;
+  members?:[User];
+  owner?:User;
 }

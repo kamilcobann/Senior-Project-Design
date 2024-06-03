@@ -10,7 +10,11 @@ import { HttpClientModule} from '@angular/common/http';
 import { ProtrackProjectDashboardComponent } from './pages/protrack-project-dashboard/protrack-project-dashboard.component';
 import { heroUsers,heroComputerDesktop,heroTableCells,heroBars3,heroXMark,
   heroUserGroup,heroCalendar,heroCog6Tooth,heroUserCircle,heroMagnifyingGlass,
-  heroBell,heroInbox,heroUser } from '@ng-icons/heroicons/outline';
+  heroBell,heroInbox,heroUser,
+  heroUserPlus,
+  heroTrash,
+  heroUserMinus,
+  heroPencil} from '@ng-icons/heroicons/outline';
 import { ProtrackSidebarComponent } from './shared/components/protrack-sidebar/protrack-sidebar.component';
 import { ProtrackNavbarComponent } from './shared/components/protrack-navbar/protrack-navbar.component';
 import { ProtrackSidebarListItemComponent } from './shared/components/protrack-sidebar-list-item/protrack-sidebar-list-item.component';
@@ -43,7 +47,7 @@ import { ProtrackProjectDetailsComponent } from './pages/protrack-project-detail
     ProtrackProjectsComponent,
     ProtrackPrimaryButtonComponent,
     ProtrackCreateProjectComponent,
-    ProtrackProjectDetailsComponent
+    ProtrackProjectDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +56,7 @@ import { ProtrackProjectDetailsComponent } from './pages/protrack-project-detail
     ReactiveFormsModule,
     HttpClientModule,
     NgIconsModule.withIcons({
-      heroUsers,heroComputerDesktop,heroBars3,heroTableCells,heroXMark,heroUserGroup,heroCalendar,heroCog6Tooth,heroUserCircle,heroMagnifyingGlass,heroBell,heroInbox,heroUser
+      heroPencil,heroTrash,heroUserMinus,heroUserPlus,heroUsers,heroComputerDesktop,heroBars3,heroTableCells,heroXMark,heroUserGroup,heroCalendar,heroCog6Tooth,heroUserCircle,heroMagnifyingGlass,heroBell,heroInbox,heroUser
     })
   ],
   providers: [],

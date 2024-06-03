@@ -45,7 +45,7 @@ class KanbanListController extends Controller
         try {
             if (!Kanban::findOrFail($kanbanId)) {
             }
-            $kanbanList = KanbanList::where('by_kanban_id',$kanbanId)->with('tickets')->get();
+            $kanbanList = KanbanList::where('by_kanban_id',$kanbanId)->with('tickets.comments','belongingKanban.members')->get();
             return response()->json([
                 "status" => true,
                 "message" => "Kanban Lists retrieved successfully.",

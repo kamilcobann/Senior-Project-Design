@@ -35,11 +35,16 @@ export class ProtrackCreateProjectComponent {
     console.log("clicked");
 
     if (this.projectForm.valid) {
+      console.log(this.projectForm);
 
       this.projectService.createProject(this.projectForm.value).subscribe(res =>
         console.log(res)
       )
       this.resetForm()
+    }
+    else{
+      console.log(this.projectForm.errors);
+
     }
   }
 

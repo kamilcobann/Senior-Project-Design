@@ -21,7 +21,7 @@ export class ProtrackNavbarComponent {
     },
     {
       icon : "heroUserGroup",
-      label : "Team Members",
+      label : "Members",
       url : "/dashboard"
     },
     {
@@ -45,12 +45,12 @@ export class ProtrackNavbarComponent {
         (<HTMLInputElement>navToggle.item(i)).classList.toggle("hidden");
       }
     };
-  
+
   }
 
   toggleMobileMenu() {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 
-  
+
 }

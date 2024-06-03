@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Project } from 'src/app/models/Project';
+import { User } from 'src/app/models/User';
+import { AuthService } from 'src/app/services/auth.service';
 import { ProtrackProjectService } from 'src/app/services/protrack-project.service';
 
 @Component({
@@ -15,16 +17,25 @@ export class ProtrackProjectDashboardComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private projectService: ProtrackProjectService
+    private projectService: ProtrackProjectService,
+    private authService: AuthService
   )
   {}
   ngOnInit(): void {
     this.projectService.getAllProjects().subscribe( res => {
-      console.log(res);
       this.response = res.projects
+
     })
   }
 
+  logout()
+  {
+    this.authService.logout().subscribe(res=>{
+      console.log(res);
+    })
+
+    this.router.navigate(['login'])
+  }
 
   createProject()
   {

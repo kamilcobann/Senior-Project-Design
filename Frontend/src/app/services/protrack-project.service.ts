@@ -14,33 +14,42 @@ export class ProtrackProjectService {
     private http:HttpClient
   ) { }
 
-  createProject(project:Project):Observable<any>{
+  setHeader():HttpHeaders
+  {
     const access = sessionStorage.getItem('authorization')
-    const headers = new HttpHeaders({'Authorization': "Bearer "+access});
-    return this.http.post(this.uri+"/projects/",project,{headers:headers})
+    return new HttpHeaders({'Authorization': "Bearer "+access});
+  }
+
+  createProject(project:Project):Observable<any>{
+    return this.http.post(this.uri+"/projects/",project,{headers:this.setHeader()})
   }
 
   getAllProjects():Observable<any>{
-    const access = sessionStorage.getItem('authorization')
-    const headers = new HttpHeaders({'Authorization': "Bearer "+access});
-    return this.http.get(this.uri+"/projects",{headers:headers})
+    return this.http.get(this.uri+"/projects",{headers:this.setHeader()})
   }
 
   getAllProjectsOfUser():Observable<any>{
-    const access = sessionStorage.getItem('authorization')
-    const headers = new HttpHeaders({'Authorization': "Bearer "+access});
-    return this.http.get(this.uri+"/user/projects",{headers:headers})
+    return this.http.get(this.uri+"/user/projects",{headers:this.setHeader()})
   }
 
   getProjectById(id:String):Observable<any>{
-    const access = sessionStorage.getItem('authorization')
-    const headers = new HttpHeaders({'Authorization': "Bearer "+access});
-    return this.http.get(this.uri+"/projects/"+id,{headers:headers})
+    return this.http.get(this.uri+"/projects/"+id,{headers:this.setHeader()})
   }
 
   deleteProjectById(id:String):Observable<any>{
-    const access = sessionStorage.getItem('authorization')
-    const headers = new HttpHeaders({'Authorization': "Bearer "+access});
-    return this.http.delete(this.uri+"/projects/"+id)
+    return this.http.delete(this.uri+"/projects/"+id,{headers:this.setHeader()})
   }
+
+  addMemberToProject(id:String,userId:any):Observable<any>{
+    return this.http.post(this.uri+"/projects/"+id+"/add-member",userId,{headers:this.setHeader()})
+  }
+  removeMemberFromProject(id:String,userId:any):Observable<any>{
+    const body = {'userId': userId}
+    return this.http.post(this.uri+"/projects/"+id+"/remove-member",body,{headers:this.setHeader()})
+  }
+
+  updateProject(id:String,project:Project):Observable<any>{
+    return this.http.put(this.uri+"/projects/"+id,project,{headers:this.setHeader()})
+  }
+
 }

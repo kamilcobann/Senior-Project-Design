@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/User';
 
 @Injectable({
@@ -24,5 +24,13 @@ export class AuthService {
     console.log(user);
 
     return this.http.post(this.uri+"/register",user);
+  }
+
+
+  logout():Observable<any>{
+    const access = sessionStorage.getItem('authorization')
+    const headers = new HttpHeaders({'Authorization': "Bearer "+access});
+    sessionStorage.removeItem('authorization')
+    return this.http.post(this.uri+"/logout",{headers:headers})
   }
 }

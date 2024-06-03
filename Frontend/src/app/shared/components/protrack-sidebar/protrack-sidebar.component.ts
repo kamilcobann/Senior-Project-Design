@@ -20,7 +20,7 @@ export class ProtrackSidebarComponent implements OnInit{
     },
     {
       icon : "heroUserGroup",
-      label : "Team Members",
+      label : "Members",
       url : "/dashboard"
     },
     {

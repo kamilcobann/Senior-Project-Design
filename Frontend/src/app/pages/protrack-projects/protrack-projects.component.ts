@@ -12,8 +12,8 @@ import { ProtrackProjectService } from 'src/app/services/protrack-project.servic
 export class ProtrackProjectsComponent {
 
   ownedProjects?:[Project]
-  joinedProjects?:[Project]
-
+  joinedProjects?:Project[]
+  response?:[Project]
   constructor(
     private router: Router,
     private projectService: ProtrackProjectService
@@ -23,12 +23,14 @@ export class ProtrackProjectsComponent {
   ngOnInit(): void {
     this.projectService.getAllProjectsOfUser().subscribe( res => {
       console.log(res);
+
       this.ownedProjects = res.projects
     })
 
-    this.projectService.getAllProjectsOfUser().subscribe( res => {
-      console.log(res);
-      this.joinedProjects = res.projects
+    this.projectService.getAllProjects().subscribe( res => {
+      this.joinedProjects = this.response?.filter( project => {
+        return project.members?.some(member => member.id == (sessionStorage.getItem('userId')))
+      })
     })
   }
 
@@ -42,4 +44,10 @@ export class ProtrackProjectsComponent {
     this.router.navigate(['/projects'])
   }
 
+
+  projectDetails(project:Project){
+    this.router.navigate(['/projects/details'],{queryParams:{
+      id:project.id
+    }})
+  }
 }

@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Delete Kanban</h1>
+<div mat-dialog-content>
+  Would you like to delete this kanban and its all related kanban lists?
+</div>
+<div mat-dialog-actions id="delete-buttons">
+  <button mat-button mat-dialog-close class="no">No</button>
+  <button mat-button mat-dialog-close class="yes" (click)="deleteKanban(this.data.kanban.id!)" >Yes</button>
+</div>

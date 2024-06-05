@@ -28,7 +28,13 @@ import { ProtrackProjectsComponent } from './pages/protrack-projects/protrack-pr
 import { ProtrackPrimaryButtonComponent } from './shared/components/protrack-primary-button/protrack-primary-button.component';
 import { ProtrackCreateProjectComponent } from './pages/protrack-create-project/protrack-create-project.component';
 import { ProtrackProjectDetailsComponent } from './pages/protrack-project-details/protrack-project-details.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { ProtrackRemoveKanbanDialogComponent } from './shared/components/protrack-remove-kanban-dialog/protrack-remove-kanban-dialog.component';
+import { ProtrackAddKanbanDialogComponent } from './shared/components/protrack-add-kanban-dialog/protrack-add-kanban-dialog.component';
+import { ProtrackAddUserToProjectDialogComponent } from './shared/components/protrack-add-user-to-project-dialog/protrack-add-user-to-project-dialog.component';
+import { ProtrackEditProjectDialogComponent } from './shared/components/protrack-edit-project-dialog/protrack-edit-project-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +54,10 @@ import { ProtrackProjectDetailsComponent } from './pages/protrack-project-detail
     ProtrackPrimaryButtonComponent,
     ProtrackCreateProjectComponent,
     ProtrackProjectDetailsComponent,
+    ProtrackRemoveKanbanDialogComponent,
+    ProtrackAddKanbanDialogComponent,
+    ProtrackAddUserToProjectDialogComponent,
+    ProtrackEditProjectDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +67,10 @@ import { ProtrackProjectDetailsComponent } from './pages/protrack-project-detail
     HttpClientModule,
     NgIconsModule.withIcons({
       heroPencil,heroTrash,heroUserMinus,heroUserPlus,heroUsers,heroComputerDesktop,heroBars3,heroTableCells,heroXMark,heroUserGroup,heroCalendar,heroCog6Tooth,heroUserCircle,heroMagnifyingGlass,heroBell,heroInbox,heroUser
-    })
+    }),
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

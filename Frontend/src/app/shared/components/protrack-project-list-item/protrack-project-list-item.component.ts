@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Project } from 'src/app/models/Project';
 
 @Component({
@@ -10,9 +11,22 @@ export class ProtrackProjectListItemComponent implements OnInit {
 
 
   @Input()
-  project? : Project
+  project?: Project
 
+
+  constructor(
+    private router: Router
+  ) {
+
+  }
   ngOnInit(): void {
   }
 
+  projectDetails(project: Project): void {
+    this.router.navigate(['/project/details'], {
+      queryParams: {
+        id: project.id
+      }
+    })
+  }
 }

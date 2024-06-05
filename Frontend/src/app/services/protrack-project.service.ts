@@ -41,7 +41,7 @@ export class ProtrackProjectService {
   }
 
   addMemberToProject(id:String,userId:any):Observable<any>{
-    return this.http.post(this.uri+"/projects/"+id+"/add-member",userId,{headers:this.setHeader()})
+    return this.http.post(this.uri+"/projects/"+id+"/add-member",{'userId':userId},{headers:this.setHeader()})
   }
   removeMemberFromProject(id:String,userId:any):Observable<any>{
     const body = {'userId': userId}

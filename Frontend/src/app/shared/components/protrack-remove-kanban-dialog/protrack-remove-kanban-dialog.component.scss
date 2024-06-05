@@ -1,0 +1,10 @@
+#delete-buttons{
+  @apply flex justify-end
+}
+
+.yes{
+  @apply bg-red-600 hover:bg-red-400
+}
+.no{
+  @apply bg-gray-600 hover:bg-gray-400
+}

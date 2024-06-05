@@ -38,6 +38,7 @@ export class ProtrackLoginComponent implements OnInit{
       this.auth.login(this.loginForm.value).subscribe(res => {
         if(res.status){
           sessionStorage.setItem('authorization',res.authorization.token);
+          sessionStorage.setItem('userId',res.user.id);
           this.dashboard();
         }
       });

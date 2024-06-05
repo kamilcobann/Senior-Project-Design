@@ -15,6 +15,12 @@ export class AuthService {
     private http:HttpClient
   ) { }
 
+  getAllUsers():Observable<any>{
+    const access = sessionStorage.getItem('authorization')
+    const headers = new HttpHeaders({'Authorization': "Bearer "+access});
+    return this.http.get(this.uri+"/users",{headers:headers})
+  }
+
   login(user:User):Observable<any>{
 
     return this.http.post(this.uri+"/login",user);

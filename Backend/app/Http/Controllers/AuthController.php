@@ -13,6 +13,21 @@ class AuthController extends Controller
         $this->middleware('auth:api', ['except' => ['login','register']]);
     }
 
+    public function getAllUsers(){
+        try {
+            $users = User::all();
+            return response()->json([
+                "status" => true,
+                "message" => "Users are successfully retrieved.",
+                "users" => $users
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                "status" => false,
+                "message" => $th->getMessage(),
+            ], 400);        }
+    }
+
     public function login(Request $request)
     {
         $request->validate([

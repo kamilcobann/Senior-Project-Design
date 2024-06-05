@@ -59,7 +59,7 @@
           Owned Projects
         </div>
         <app-protrack-box>
-          <app-protrack-project-list-item *ngFor="let item of response"
+          <app-protrack-project-list-item *ngFor="let item of ownedProjects"
             [project]="item" (click)="projectDetails(item)"></app-protrack-project-list-item>
           <div class="w-full justify-center flex mt-3 mb-2">
             <app-protrack-primary-button (click)="goToProjects()"
@@ -72,8 +72,8 @@
           Joined Projects
         </div>
         <app-protrack-box>
-          <app-protrack-project-list-item *ngFor="let item of response"
-            [project]="item"></app-protrack-project-list-item>
+          <app-protrack-project-list-item *ngFor="let item of joinedProjects"
+            [project]="item" (click)="projectDetails(item)"></app-protrack-project-list-item>
           <div class="w-full justify-center flex mt-3 mb-2">
             <app-protrack-primary-button (click)="goToProjects()"
               [buttonText]="'View all projects'"></app-protrack-primary-button>

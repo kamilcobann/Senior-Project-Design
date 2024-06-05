@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Project } from '../models/Project';
 import { Observable } from 'rxjs';
+import { Kanban } from '../models/Kanban';
 
 @Injectable({
   providedIn: 'root'
@@ -28,4 +29,12 @@ export class ProtrackKanbanService {
     return this.http.delete(this.uri+"/kanbans/"+id,{headers:this.setHeader()})
   }
 
+  addKanban(projectId: String, kanban:Kanban):Observable<any>
+  {
+    return this.http.post(this.uri+"/projects/"+projectId+"/kanbans",kanban,{headers:this.setHeader()})
+  }
+
+  editProject(projectId: String,project: Project):Observable<any>{
+    return this.http.put(this.uri+"/projects/"+projectId,project,{headers:this.setHeader()})
+  }
 }

@@ -116,7 +116,7 @@ class KanbanController extends Controller
     {
 
         try {
-           $kanban = Kanban::with(['members','kanbanLists.tickets.comments','relatedProject'])->whereId($id)->first();
+           $kanban = Kanban::with(['members','kanbanLists.tickets.comments.owner','relatedProject'])->whereId($id)->first();
             return response()->json([
                 "status" => true,
                 "message" => "Kanban successfully retrieved.",

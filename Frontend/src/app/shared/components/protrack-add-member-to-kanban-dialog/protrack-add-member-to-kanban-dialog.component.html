@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Add Member</h1>
+<div mat-dialog-content>
+  <ul class="list-none">
+    <li *ngFor="let user of users"
+      class="list-item mt-3 hover:bg-slate-400 hover:bg-opacity-15 p-2 hover:cursor-pointer hover:rounded-md hover:text-black"
+      >
+      <div class="w-full" (click)="addMember(user.id!)" >
+        {{user.name}}
+      </div>
+      </li>
+  </ul>
+</div>
+<div class="my-4 flex justify-end me-4">
+  <button mat-button mat-dialog-close class="close-add-member">Close</button>
+</div>

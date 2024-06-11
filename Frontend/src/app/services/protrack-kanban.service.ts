@@ -21,6 +21,10 @@ export class ProtrackKanbanService {
     return new HttpHeaders({'Authorization': "Bearer "+access});
   }
 
+  getKanbanById(id:String):Observable<any>{
+    return this.http.get(this.uri+"/kanbans/"+id,{headers:this.setHeader()})
+  }
+
   getAllKanbansOfProject(id:String):Observable<any>{
     return this.http.get(this.uri+"/projects/"+id+"/kanbans",{headers:this.setHeader()})
   }
@@ -36,5 +40,17 @@ export class ProtrackKanbanService {
 
   editProject(projectId: String,project: Project):Observable<any>{
     return this.http.put(this.uri+"/projects/"+projectId,project,{headers:this.setHeader()})
+  }
+
+  getAllKanbansOfUser():Observable<any>{
+    return this.http.get(this.uri+"/user/kanbans/",{headers:this.setHeader()})
+  }
+
+  addMemberToKanban(id:String,userId:any):Observable<any>{
+    return this.http.post(this.uri+"/kanbans/"+id+"/add-member",{'userId':userId},{headers:this.setHeader()})
+  }
+
+  removeMemberFromKanban(id:String,userId:any):Observable<any>{
+    return this.http.post(this.uri+"/kanbans/"+id+"/remove-member",{'userId':userId},{headers:this.setHeader()})
   }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Project } from 'src/app/models/Project';
+import { AuthService } from 'src/app/services/auth.service';
 import { ProtrackProjectService } from 'src/app/services/protrack-project.service';
 @Component({
   selector: 'app-protrack-create-project',
@@ -14,7 +16,8 @@ export class ProtrackCreateProjectComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private projectService: ProtrackProjectService
+    private projectService: ProtrackProjectService,
+    private authService:AuthService
   ) { }
   ngOnInit(): void {
     this.projectForm = this.fb.group({
@@ -56,5 +59,12 @@ export class ProtrackCreateProjectComponent {
     this.router.navigate(['/projects'])
   }
 
+  logout()
+  {
+    this.authService.logout().subscribe(res=>{
+      console.log(res);
+    })
 
+    this.router.navigate(['login'])
+  }
 }

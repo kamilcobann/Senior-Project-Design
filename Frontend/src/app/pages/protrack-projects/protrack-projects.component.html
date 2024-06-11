@@ -13,12 +13,7 @@
           </div>
           <div class="text-white w-1/2 ms-4 flex items-center bg-zinc-950">
             <ng-icon name="heroUser" class="text-white text-xl me-4"></ng-icon>
-            <select name="" id="" class="w-1/2 bg-zinc-950 flex">
-              <option class="hidden">Profile</option>
-              <option></option>
-              <option></option>
-              <option></option>
-            </select>
+            <div class="hover:cursor-pointer text-sm text-gray-400 hover:text-gray-300" (click)="logout()">Logout</div>
           </div>
         </div>
       </div>
@@ -51,7 +46,7 @@
         </div>
         <app-protrack-box>
           <app-protrack-project-list-item *ngFor="let item of ownedProjects"
-            [project]="item" (click)="projectDetails(item)"></app-protrack-project-list-item>
+          [project]="item" [routerLink]="['/projects/',item.id]"></app-protrack-project-list-item>
           <div class="w-full justify-center flex mt-3 mb-2">
             <app-protrack-primary-button (click)="goToProjects()"
               [buttonText]="'View all projects'"></app-protrack-primary-button>
@@ -64,7 +59,7 @@
         </div>
         <app-protrack-box>
           <app-protrack-project-list-item *ngFor="let item of joinedProjects"
-            [project]="item" (click)="projectDetails(item)"></app-protrack-project-list-item>
+          [project]="item" [routerLink]="['/projects/',item.id]"></app-protrack-project-list-item>
           <div class="w-full justify-center flex mt-3 mb-2">
             <app-protrack-primary-button (click)="goToProjects()"
               [buttonText]="'View all projects'"></app-protrack-primary-button>

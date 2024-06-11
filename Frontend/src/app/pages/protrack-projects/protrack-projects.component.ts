@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Project } from 'src/app/models/Project';
+import { AuthService } from 'src/app/services/auth.service';
 import { ProtrackProjectService } from 'src/app/services/protrack-project.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class ProtrackProjectsComponent {
   response?:[Project]
   constructor(
     private router: Router,
-    private projectService: ProtrackProjectService
+    private projectService: ProtrackProjectService,
+    private authService:AuthService
   )
   {}
 
@@ -43,7 +45,14 @@ export class ProtrackProjectsComponent {
   {
     this.router.navigate(['/projects'])
   }
+  logout()
+  {
+    this.authService.logout().subscribe(res=>{
+      console.log(res);
+    })
 
+    this.router.navigate(['login'])
+  }
 
   projectDetails(project:Project){
     this.router.navigate(['/projects/details'],{queryParams:{

@@ -1,0 +1,74 @@
+<div class="w-full fixed md:block hidden mt-4">
+  <div class="ms-72">
+    <div class="w-full flex justify-between items-center">
+      <div class="ms-11 w-1/6 flex rounded-full bg-zinc-700 py-2 ps-2 items-center">
+        <input type="text" class=" w-full bg-zinc-700 ms-2 text-white focus:outline-none" placeholder="Search">
+        <ng-icon name="heroMagnifyingGlass" class="text-white text-xl mx-4"></ng-icon>
+      </div>
+      <div class="me-11 w-1/4">
+        <div class="w-full flex items-center">
+          <div class="flex gap-4">
+            <ng-icon name="heroBell" class="text-white text-xl"></ng-icon>
+            <ng-icon name="heroInbox" class="text-white text-xl"></ng-icon>
+          </div>
+          <div class="text-white w-1/2 ms-4 flex items-center">
+            <ng-icon name="heroUser" class="text-white text-xl me-4"></ng-icon>
+            <div class="hover:cursor-pointer text-sm text-gray-400 hover:text-gray-300">Logout</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="fixed">
+  <app-protrack-sidebar></app-protrack-sidebar>
+  <app-protrack-navbar></app-protrack-navbar>
+</div>
+<div class="md:flex md:ms-80">
+  <div class="flex-col justify-center mt-20 text-white">
+    <div class="flex gap-2 items-baseline">
+      <div (click)="openAddListDialog('0ms','0ms',kanban)"
+        class="flex hover:cursor-pointer bg-purple-500 hover:bg-purple-400 button-secondary justify-center rounded-md mb-3">
+        Add List</div>
+      <div class="flex items-baseline gap-1 text-sm">
+        Members:
+        <div  *ngFor="let member of kanban.members; let i = index">
+          <div  (mouseenter)="onMouseEnter(i)" (mouseleave)="onMouseLeave(i)">
+            <div class="hover:cursor-pointer bg-red-400 rounded-full px-3 py-2" *ngIf="isMouseOver[i]" (click)="removeMemberFromKanban(member)">X
+            </div>
+            <div class="bg-gray-500 rounded-full hover:cursor-pointer px-3 py-2" *ngIf="!isMouseOver[i]">{{member.name?.charAt(0)}}
+            </div>
+
+          </div>
+        </div>
+        <div class="bg-purple-500 rounded-full px-3 py-2 hover:cursor-pointer" (click)="openAddMemberToKanbanDialog('0ms','0ms',kanban)">+
+        </div>
+      </div>
+    </div>
+    <div cdkDropListGroup class="example-container-wrapper ">
+      <div class="example-container" *ngFor="let kanbanList of kanban.kanban_lists">
+        <div class="flex justify-between items-baseline">
+          <h2>{{kanbanList.title}}</h2>
+          <div (click)="openCreateTicketDialog('0ms','0ms',kanbanList)"
+            class="flex text-xs hover:cursor-pointer bg-purple-500 hover:bg-purple-400 button-secondary justify-center px-2 py-1 rounded-full mb-3">
+            +</div>
+        </div>
+        <div cdkDropList [cdkDropListAutoScrollStep]="20" [cdkDropListData]="kanbanList.tickets!"
+          [class]="kanbanList.tickets!.length>0 ?'example-list':'empty-list'"
+          (cdkDropListDropped)="drop($event,kanbanList.id!)">
+          <div [class]="'example-box  hover:cursor-pointer'" (click)="openTicketInfoDialog('0ms','0ms',ticket,kanban)"
+            *ngFor="let ticket of kanbanList.tickets" cdkDrag>{{ticket.title}}
+            <div class="example-handle hover:cursor-move" cdkDragHandle>
+              <svg width="24px" fill="gray" viewBox="0 0 24 24">
+                <path
+                  d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z">
+                </path>
+                <path d="M0 0h24v24H0z" fill="none"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

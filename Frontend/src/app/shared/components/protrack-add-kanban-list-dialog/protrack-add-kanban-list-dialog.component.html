@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Add List</h1>
+<div class="" mat-dialog-content>
+
+  <form action="" class="" [formGroup]="listForm">
+    <div class="pt-3 w-full">
+      <div class="justify-start m-3">
+        <label for="name">Name</label>
+        <div class="my-3 w-full">
+          <input class="text-black w-full input" type="text" name="title" id="title" formControlName="title">
+          <div class="text-red-500 text-sm mt-2"
+            *ngIf="listForm.get('title')?.hasError('required') && listForm.get('title')?.touched">
+            List title is required.
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-end gap-2 w-full" id="add-kanban-buttons">
+        <button  mat-button mat-dialog-close class="reset-form">Reset</button>
+        <button mat-button mat-dialog-close class=" add-kanban" (click)="addKanbanList()">Add</button>
+      </div>
+    </div>
+  </form>
+</div>

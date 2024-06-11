@@ -13,13 +13,7 @@
           </div>
           <div class="text-white w-1/2 ms-4 flex items-center bg-zinc-950">
             <ng-icon name="heroUser" class="text-white text-xl me-4"></ng-icon>
-            <div class="" (click)="logout()">Logout</div>
-            <select name="" id="" class="w-1/2 bg-zinc-950 flex">
-              <option class="hidden">Profile</option>
-              <option></option>
-              <option></option>
-              <option></option>
-            </select>
+            <div class="hover:cursor-pointer text-sm text-gray-400 hover:text-gray-300" (click)="logout()">Logout</div>
           </div>
         </div>
       </div>
@@ -48,10 +42,10 @@
     <div class="w-full">
       <div class="md:flex md:justify-center xs:flex-col">
         <div class="md:w-1/3 w-full">
-          <app-protrack-project-widget></app-protrack-project-widget>
+          <app-protrack-project-widget [innerText]="'Active Projects'" [count]="activeCount"></app-protrack-project-widget>
         </div>
         <div class="md:w-1/3 ">
-          <app-protrack-project-widget></app-protrack-project-widget>
+          <app-protrack-project-widget [innerText]="'Inactive Projects'" [count]="inactiveCount"></app-protrack-project-widget>
         </div>
       </div>
       <div class="mt-4">
@@ -60,7 +54,7 @@
         </div>
         <app-protrack-box>
           <app-protrack-project-list-item *ngFor="let item of ownedProjects"
-            [project]="item" (click)="projectDetails(item)"></app-protrack-project-list-item>
+            [project]="item" [routerLink]="['/projects/',item.id]" ></app-protrack-project-list-item>
           <div class="w-full justify-center flex mt-3 mb-2">
             <app-protrack-primary-button (click)="goToProjects()"
               [buttonText]="'View all projects'"></app-protrack-primary-button>
@@ -73,7 +67,7 @@
         </div>
         <app-protrack-box>
           <app-protrack-project-list-item *ngFor="let item of joinedProjects"
-            [project]="item" (click)="projectDetails(item)"></app-protrack-project-list-item>
+          [project]="item" [routerLink]="['/projects/',item.id]"></app-protrack-project-list-item>
           <div class="w-full justify-center flex mt-3 mb-2">
             <app-protrack-primary-button (click)="goToProjects()"
               [buttonText]="'View all projects'"></app-protrack-primary-button>
@@ -83,7 +77,7 @@
     </div>
   </div>
   <div class="md:w-5/12 md:right-0 h-full md:ms-3 md:me-0 my-3 text-white">
-    <div class="text-white ms-4 font-bold text-lg mb-3">Owned Tickets</div>
+    <div class="text-white ms-4 font-bold text-lg mb-3">Owned Kanbans</div>
     <app-protrack-upcoming-events-list></app-protrack-upcoming-events-list>
   </div>
 </div>

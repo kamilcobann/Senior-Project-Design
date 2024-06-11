@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Kanban } from 'src/app/models/Kanban';
 
 @Component({
   selector: 'app-protrack-upcoming-events-list-item',
@@ -6,9 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./protrack-upcoming-events-list-item.component.scss']
 })
 export class ProtrackUpcomingEventsListItemComponent implements OnInit{
-  
-  @Input()
-  item : {day?: String, title?: String, description?: String} = {}
+
+  @Input()item!:Kanban
   ngOnInit(): void {
   }
 

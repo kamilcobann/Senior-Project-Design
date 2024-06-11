@@ -16,7 +16,7 @@ class TicketController extends Controller
     {
 
         try {
-            $ticket = Ticket::with(['assignedUsers','comments'])->whereId($id)->get();
+            $ticket = Ticket::with(['assignedUsers','comments.owner'])->whereId($id)->get();
             return response()->json([
                 "status" => true,
                 "message" => "Ticket successfully retrieved.",

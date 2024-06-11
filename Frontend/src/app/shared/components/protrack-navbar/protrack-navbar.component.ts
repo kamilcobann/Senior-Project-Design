@@ -17,7 +17,7 @@ export class ProtrackNavbarComponent {
     {
       icon : "heroTableCells",
       label : "Projects",
-      url : "/dashboard"
+      url : "/projects"
     },
     {
       icon : "heroUserGroup",
@@ -26,7 +26,7 @@ export class ProtrackNavbarComponent {
     },
     {
       icon : "heroCalendar",
-      label : "Team Availability",
+      label : "Kanbans",
       url : "/dashboard"
     },
     {

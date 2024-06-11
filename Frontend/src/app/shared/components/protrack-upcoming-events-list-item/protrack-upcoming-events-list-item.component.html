@@ -1,7 +1,6 @@
 <div id="list-item"  class="flex items-center py-3 gap-2 hover:bg-zinc-800 active:bg-zinc-800  w-full mb-2 md:rounded-s-2xl md:rounded-e-none rounded-xl">
-    <div class="rounded-full bg-zinc-600 py-4 px-5 md:ms-4 ms-4 font-bold" id="date">{{item.day}}</div>
     <div class="flex-1 md:ms-2 ms-2">
-        <div class="text-lg font-semibold">{{item.title}}</div>
-        <div class="text-sm">{{item.description}}</div>
+        <div class="text-lg font-semibold">{{item.name}}</div>
+        <div class="text-sm">{{item.related_project?.title}}</div>
     </div>
 </div>

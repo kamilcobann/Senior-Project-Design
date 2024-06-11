@@ -14,7 +14,8 @@ import { heroUsers,heroComputerDesktop,heroTableCells,heroBars3,heroXMark,
   heroUserPlus,
   heroTrash,
   heroUserMinus,
-  heroPencil} from '@ng-icons/heroicons/outline';
+  heroPencil,
+  heroAdjustmentsVertical} from '@ng-icons/heroicons/outline';
 import { ProtrackSidebarComponent } from './shared/components/protrack-sidebar/protrack-sidebar.component';
 import { ProtrackNavbarComponent } from './shared/components/protrack-navbar/protrack-navbar.component';
 import { ProtrackSidebarListItemComponent } from './shared/components/protrack-sidebar-list-item/protrack-sidebar-list-item.component';
@@ -31,10 +32,17 @@ import { ProtrackProjectDetailsComponent } from './pages/protrack-project-detail
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ProtrackRemoveKanbanDialogComponent } from './shared/components/protrack-remove-kanban-dialog/protrack-remove-kanban-dialog.component';
 import { ProtrackAddKanbanDialogComponent } from './shared/components/protrack-add-kanban-dialog/protrack-add-kanban-dialog.component';
 import { ProtrackAddUserToProjectDialogComponent } from './shared/components/protrack-add-user-to-project-dialog/protrack-add-user-to-project-dialog.component';
 import { ProtrackEditProjectDialogComponent } from './shared/components/protrack-edit-project-dialog/protrack-edit-project-dialog.component';
+import { ProtrackKanbanDetailsComponent } from './pages/protrack-kanban-details/protrack-kanban-details.component';
+import { ProtrackTicketInfoDialogComponent } from './shared/components/protrack-ticket-info-dialog/protrack-ticket-info-dialog.component';
+import { ProtrackAddKanbanListDialogComponent } from './shared/components/protrack-add-kanban-list-dialog/protrack-add-kanban-list-dialog.component';
+import { ProtrackAddTicketDialogComponent } from './shared/components/protrack-add-ticket-dialog/protrack-add-ticket-dialog.component';
+import { ProtrackAddMemberToKanbanDialogComponent } from './shared/components/protrack-add-member-to-kanban-dialog/protrack-add-member-to-kanban-dialog.component';
+import { ProtrackAddMemberToTicketDialogComponent } from './shared/components/protrack-add-member-to-ticket-dialog/protrack-add-member-to-ticket-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +66,12 @@ import { ProtrackEditProjectDialogComponent } from './shared/components/protrack
     ProtrackAddKanbanDialogComponent,
     ProtrackAddUserToProjectDialogComponent,
     ProtrackEditProjectDialogComponent,
+    ProtrackKanbanDetailsComponent,
+    ProtrackTicketInfoDialogComponent,
+    ProtrackAddKanbanListDialogComponent,
+    ProtrackAddTicketDialogComponent,
+    ProtrackAddMemberToKanbanDialogComponent,
+    ProtrackAddMemberToTicketDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,11 +80,12 @@ import { ProtrackEditProjectDialogComponent } from './shared/components/protrack
     ReactiveFormsModule,
     HttpClientModule,
     NgIconsModule.withIcons({
-      heroPencil,heroTrash,heroUserMinus,heroUserPlus,heroUsers,heroComputerDesktop,heroBars3,heroTableCells,heroXMark,heroUserGroup,heroCalendar,heroCog6Tooth,heroUserCircle,heroMagnifyingGlass,heroBell,heroInbox,heroUser
+      heroAdjustmentsVertical,heroPencil,heroTrash,heroUserMinus,heroUserPlus,heroUsers,heroComputerDesktop,heroBars3,heroTableCells,heroXMark,heroUserGroup,heroCalendar,heroCog6Tooth,heroUserCircle,heroMagnifyingGlass,heroBell,heroInbox,heroUser
     }),
     BrowserAnimationsModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

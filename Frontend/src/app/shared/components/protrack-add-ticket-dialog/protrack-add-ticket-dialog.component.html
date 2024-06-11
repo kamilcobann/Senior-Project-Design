@@ -1,0 +1,18 @@
+<div class="w-full flex justify-between mt-4 pb-4">
+  <div class="text-lg font-normal ms-5 text-white">Create Ticket</div>
+</div>
+<div mat-dialog-content class="">
+  <div class="">
+    <form [formGroup]="ticketForm" action="">
+      <label for="title" class="label">Title</label>
+    <input type="text" name="title" class="input rounded-md mb-2" formControlName="title" id="title">
+      <textarea formControlName="description" [rows]="6"
+        class="w-full rounded-md p-2  border-gray-300 dark:border-gray-600 text-black
+    bg-gray-300 dark:bg-gray-600 dark:text-gray-300 hover:dark:border-purple-500 focus:outline-none focus:border-purple-500"></textarea>
+    </form>
+  </div>
+</div>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+  <button mat-button (click)="createTicket()">Save</button>
+</mat-dialog-actions>

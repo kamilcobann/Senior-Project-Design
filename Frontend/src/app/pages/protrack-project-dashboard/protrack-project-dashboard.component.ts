@@ -17,6 +17,8 @@ export class ProtrackProjectDashboardComponent implements OnInit {
 
   ownedProjects?:[Project]
   joinedProjects?:Project[]
+  activeCount?:Number
+  inactiveCount?:Number
   constructor(
     private router: Router,
     private projectService: ProtrackProjectService,
@@ -26,6 +28,14 @@ export class ProtrackProjectDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.projectService.getAllProjects().subscribe( res => {
       this.response = res.projects
+      this.activeCount = this.response?.filter(project => {
+        return project.is_active == true
+      }).length
+
+      this.inactiveCount = this.response?.filter(project => {
+        return project.is_active == false
+      }).length
+
       this.joinedProjects = this.response?.filter( project => {
         return project.members?.some(member => member.id == (sessionStorage.getItem('userId')))
       })

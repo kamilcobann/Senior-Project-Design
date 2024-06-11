@@ -11,6 +11,7 @@ import { ProtrackRemoveKanbanDialogComponent } from 'src/app/shared/components/p
 import { ProtrackAddKanbanDialogComponent } from 'src/app/shared/components/protrack-add-kanban-dialog/protrack-add-kanban-dialog.component';
 import { ProtrackAddUserToProjectDialogComponent } from 'src/app/shared/components/protrack-add-user-to-project-dialog/protrack-add-user-to-project-dialog.component';
 import { ProtrackEditProjectDialogComponent } from 'src/app/shared/components/protrack-edit-project-dialog/protrack-edit-project-dialog.component';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -34,10 +35,11 @@ export class ProtrackProjectDetailsComponent implements OnInit {
     private location: Location,
     private projectSercvice: ProtrackProjectService,
     private kanbanService: ProtrackKanbanService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private authService: AuthService
   ) { }
 
-  openRemoveDialog(enterAnimationDuration: string, exitAnimationDuration: string, kanban: Kanban,project:Project): void {
+  openRemoveDialog(enterAnimationDuration: string, exitAnimationDuration: string, kanban: Kanban, project: Project): void {
     const dialogRef = this.dialog.open(ProtrackRemoveKanbanDialogComponent, {
       width: '500px',
       enterAnimationDuration,
@@ -51,7 +53,7 @@ export class ProtrackProjectDetailsComponent implements OnInit {
   }
 
 
-  openAddKanbanDialog(enterAnimationDuration: string, exitAnimationDuration: string, project:Project): void {
+  openAddKanbanDialog(enterAnimationDuration: string, exitAnimationDuration: string, project: Project): void {
     const dialogRef = this.dialog.open(ProtrackAddKanbanDialogComponent, {
       width: '500px',
       enterAnimationDuration,
@@ -64,7 +66,7 @@ export class ProtrackProjectDetailsComponent implements OnInit {
     });
   }
 
-  openAddMemberDialog(enterAnimationDuration: string, exitAnimationDuration: string, project:Project): void {
+  openAddMemberDialog(enterAnimationDuration: string, exitAnimationDuration: string, project: Project): void {
     const dialogRef = this.dialog.open(ProtrackAddUserToProjectDialogComponent, {
       width: '500px',
       enterAnimationDuration,
@@ -80,7 +82,7 @@ export class ProtrackProjectDetailsComponent implements OnInit {
     });
   }
 
-  openEditProject(enterAnimationDuration: string, exitAnimationDuration: string, project:Project): void {
+  openEditProject(enterAnimationDuration: string, exitAnimationDuration: string, project: Project): void {
     const dialogRef = this.dialog.open(ProtrackEditProjectDialogComponent, {
       width: '500px',
       enterAnimationDuration,
@@ -109,15 +111,14 @@ export class ProtrackProjectDetailsComponent implements OnInit {
   ngOnInit(): void {
 
 
-    this.route.queryParamMap.subscribe((params) => {
-      this.projectId = params.get('id')!;
-    })
+    this.projectId = String(this.route.snapshot.paramMap.get('id'))
 
-    this.projectSercvice.getProjectById(this.projectId).subscribe(res => {
+    this.projectSercvice.getProjectById(String(this.route.snapshot.paramMap.get('id'))).subscribe(res => {
       this.project = res.project
       this.start_date = new Date(this.project.start_date!.toString()).toDateString()
       console.log(this.project);
       this.isToggled = this.project.is_active ? this.project.is_active : false
+
     })
 
     this.kanbanService.getAllKanbansOfProject(this.projectId).subscribe(res => {
@@ -143,18 +144,24 @@ export class ProtrackProjectDetailsComponent implements OnInit {
 
   toggleSwitch(isChecked: Boolean) {
 
-    this.projectSercvice.updateProject(this.project.id!,{
-      "title" : this.project.title,
+    this.projectSercvice.updateProject(this.project.id!, {
+      "title": this.project.title,
       "description": this.project.description,
-      "is_active" : !isChecked,
+      "is_active": !isChecked,
       "start_date": this.project.start_date,
       "end_date": this.project.end_date,
 
-    }).subscribe(res=>{
+    }).subscribe(res => {
       console.log(res);
 
     })
   }
+  logout() {
+    this.authService.logout().subscribe(res => {
+      console.log(res);
+    })
 
+    this.router.navigate(['login'])
+  }
 
 }

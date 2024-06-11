@@ -8,6 +8,6 @@ export interface KanbanList{
   by_kanban_id?:String;
   created_at?:String;
   updated_at?:String;
-  tickets?:[Ticket];
+  tickets?:Ticket[];
   belonging_kanban?:Kanban;
 }

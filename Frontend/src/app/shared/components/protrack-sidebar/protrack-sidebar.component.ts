@@ -25,14 +25,14 @@ export class ProtrackSidebarComponent implements OnInit{
     },
     {
       icon : "heroCalendar",
-      label : "Team Availability",
+      label : "Kanbans",
       url : "/dashboard"
     },
-    {
-      icon : "heroCog6Tooth",
-      label : "Settings",
-      url : "/dashboard"
-    },
+    // {
+    //   icon : "heroCog6Tooth",
+    //   label : "Settings",
+    //   url : "/dashboard"
+    // },
   ]
 
   ngOnInit(): void {

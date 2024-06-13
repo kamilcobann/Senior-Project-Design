@@ -39,7 +39,7 @@ export class ProtrackRegisterComponent implements OnInit {
       this.authService.register(this.registerForm.value).subscribe(res => {
         if (res.status) {
           sessionStorage.setItem('access_token', res.authorisation.token)
-          this.dashboard();
+          this.login();
         }
       });
     }

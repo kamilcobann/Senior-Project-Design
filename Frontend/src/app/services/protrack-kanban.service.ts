@@ -28,6 +28,9 @@ export class ProtrackKanbanService {
   getAllKanbansOfProject(id:String):Observable<any>{
     return this.http.get(this.uri+"/projects/"+id+"/kanbans",{headers:this.setHeader()})
   }
+  getAllKanbans():Observable<any>{
+    return this.http.get(this.uri+"/kanbans",{headers:this.setHeader()})
+  }
 
   deleteKanbanById(id:String):Observable<any>{
     return this.http.delete(this.uri+"/kanbans/"+id,{headers:this.setHeader()})

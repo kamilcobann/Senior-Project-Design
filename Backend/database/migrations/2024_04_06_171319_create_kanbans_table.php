@@ -16,8 +16,8 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name');
             $table->boolean('is_active');
-            $table->foreignIdFor(\App\Models\User::class,'by_user_id')->constrained('users');
-            $table->foreignIdFor(\App\Models\Project::class,'by_project_id')->constrained('projects');
+            $table->foreignIdFor(\App\Models\User::class,'by_user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignIdFor(\App\Models\Project::class,'by_project_id')->constrained('projects')->onDelete('cascade');
 
         });
     }

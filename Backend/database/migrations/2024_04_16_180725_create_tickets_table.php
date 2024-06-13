@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('description')->nullable();
-            $table->foreignIdFor(\App\Models\User::class,'by_user_id')->constrained('users');
-            $table->foreignIdFor(\App\Models\KanbanList::class,'by_kanban_list_id')->constrained('kanban_lists');
+            $table->foreignIdFor(\App\Models\User::class,'by_user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignIdFor(\App\Models\KanbanList::class,'by_kanban_list_id')->constrained('kanban_lists')->onDelete('cascade');
             $table->timestamps();
 
         });

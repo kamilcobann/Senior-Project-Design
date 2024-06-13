@@ -43,6 +43,8 @@ import { ProtrackAddKanbanListDialogComponent } from './shared/components/protra
 import { ProtrackAddTicketDialogComponent } from './shared/components/protrack-add-ticket-dialog/protrack-add-ticket-dialog.component';
 import { ProtrackAddMemberToKanbanDialogComponent } from './shared/components/protrack-add-member-to-kanban-dialog/protrack-add-member-to-kanban-dialog.component';
 import { ProtrackAddMemberToTicketDialogComponent } from './shared/components/protrack-add-member-to-ticket-dialog/protrack-add-member-to-ticket-dialog.component';
+import { ProtrackMembersComponent } from './pages/protrack-members/protrack-members.component';
+import { ProtrackKanbansComponent } from './pages/protrack-kanbans/protrack-kanbans.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +74,8 @@ import { ProtrackAddMemberToTicketDialogComponent } from './shared/components/pr
     ProtrackAddTicketDialogComponent,
     ProtrackAddMemberToKanbanDialogComponent,
     ProtrackAddMemberToTicketDialogComponent,
+    ProtrackMembersComponent,
+    ProtrackKanbansComponent,
   ],
   imports: [
     BrowserModule,

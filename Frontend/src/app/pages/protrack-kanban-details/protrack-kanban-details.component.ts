@@ -10,7 +10,7 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { ProtrackKanbanService } from 'src/app/services/protrack-kanban.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Kanban } from 'src/app/models/Kanban';
 import { Ticket } from 'src/app/models/Ticket';
 import { ProtrackTicketService } from 'src/app/services/protrack-ticket.service';
@@ -21,6 +21,7 @@ import { ProtrackAddTicketDialogComponent } from 'src/app/shared/components/prot
 import { KanbanList } from 'src/app/models/KanbanList';
 import { User } from 'src/app/models/User';
 import { ProtrackAddMemberToKanbanDialogComponent } from 'src/app/shared/components/protrack-add-member-to-kanban-dialog/protrack-add-member-to-kanban-dialog.component';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-protrack-kanban-details',
@@ -37,6 +38,8 @@ export class ProtrackKanbanDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private ticketService: ProtrackTicketService,
     public dialog: MatDialog,
+    private authService:AuthService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -146,5 +149,11 @@ export class ProtrackKanbanDetailsComponent implements OnInit {
       this.refreshKanban()
     })
   }
+  logout()
+  {
+    this.authService.logout().subscribe(res=>{
+    })
 
+    this.router.navigate(['login'])
+  }
 }

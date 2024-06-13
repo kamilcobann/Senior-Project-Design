@@ -1,18 +1,13 @@
-<div class="w-full md:block hidden mt-4">
+<div class="w-full md:block hidden mt-5">
   <div class="ms-72">
     <div class="w-full flex justify-between items-center">
-      <div class="ms-11 w-1/6 flex rounded-full bg-zinc-700 py-2 ps-2 items-center">
-        <input type="text" class=" w-full bg-zinc-700 ms-2 text-white focus:outline-none" placeholder="Search">
-        <ng-icon name="heroMagnifyingGlass" class="text-white text-xl mx-4"></ng-icon>
+      <div class="ms-11 w-1/6 flex  py-2 ps-2 items-center">
+        <!-- <input type="text" class=" w-full bg-zinc-700 ms-2 text-white focus:outline-none" placeholder="Search">
+        <ng-icon name="heroMagnifyingGlass" class="text-white text-xl mx-4"></ng-icon> -->
       </div>
       <div class="me-11 w-1/4">
         <div class="w-full flex items-center">
-          <div class="flex gap-4">
-            <ng-icon name="heroBell" class="text-white text-xl"></ng-icon>
-            <ng-icon name="heroInbox" class="text-white text-xl"></ng-icon>
-          </div>
           <div class="text-white w-1/2 ms-4 flex items-center bg-zinc-950">
-            <ng-icon name="heroUser" class="text-white text-xl me-4"></ng-icon>
             <div class="hover:cursor-pointer text-sm text-gray-400 hover:text-gray-300" (click)="logout()">Logout</div>
           </div>
         </div>
@@ -23,7 +18,7 @@
 <div class="md:flex md:w-full">
   <app-protrack-sidebar></app-protrack-sidebar>
   <app-protrack-navbar></app-protrack-navbar>
-  <div *ngIf="project" class=" w-full text-white md:ms-80 px-3">
+  <div *ngIf="project" class=" w-3/4 text-white md:ms-80 px-3">
     <div class="w-full flex justify-between mt-3 mb-12 items-center">
       <div class="flex-col">
         <div class="md:text-3xl text-xl font-bold">{{project.title}}

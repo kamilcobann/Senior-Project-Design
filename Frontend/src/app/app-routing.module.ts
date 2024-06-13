@@ -7,8 +7,15 @@ import { ProtrackProjectsComponent } from './pages/protrack-projects/protrack-pr
 import { ProtrackCreateProjectComponent } from './pages/protrack-create-project/protrack-create-project.component';
 import { ProtrackProjectDetailsComponent } from './pages/protrack-project-details/protrack-project-details.component';
 import { ProtrackKanbanDetailsComponent } from './pages/protrack-kanban-details/protrack-kanban-details.component';
+import { ProtrackMembersComponent } from './pages/protrack-members/protrack-members.component';
+import { ProtrackKanbansComponent } from './pages/protrack-kanbans/protrack-kanbans.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  },
   { path: 'login', component: ProtrackLoginComponent },
   { path: 'register', component: ProtrackRegisterComponent },
   { path: 'dashboard', component: ProtrackProjectDashboardComponent },
@@ -17,6 +24,8 @@ const routes: Routes = [
   { path: 'projects/create', component: ProtrackCreateProjectComponent },
   { path: 'projects/:id', component: ProtrackProjectDetailsComponent },
   { path: 'projects/:id/kanbans/:kanbanId', component: ProtrackKanbanDetailsComponent },
+  { path: 'members', component: ProtrackMembersComponent },
+  { path: 'kanbans', component: ProtrackKanbansComponent },
   // { path: 'kanbans/:id', component: ProtrackKanbanDetailsComponent }
 
 

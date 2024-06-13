@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup} from '@angular/forms';
 import { Router } from '@angular/router';
+import { Kanban } from 'src/app/models/Kanban';
 import { Project } from 'src/app/models/Project';
 import { User } from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
+import { ProtrackKanbanService } from 'src/app/services/protrack-kanban.service';
 import { ProtrackProjectService } from 'src/app/services/protrack-project.service';
 
 @Component({
@@ -14,7 +16,7 @@ import { ProtrackProjectService } from 'src/app/services/protrack-project.servic
 export class ProtrackProjectDashboardComponent implements OnInit {
 
   response?:[Project]
-
+  ownedKanbans?:Kanban[]
   ownedProjects?:[Project]
   joinedProjects?:Project[]
   activeCount?:Number
@@ -22,6 +24,7 @@ export class ProtrackProjectDashboardComponent implements OnInit {
   constructor(
     private router: Router,
     private projectService: ProtrackProjectService,
+    private kanbanService: ProtrackKanbanService,
     private authService: AuthService
   )
   {}
@@ -40,10 +43,13 @@ export class ProtrackProjectDashboardComponent implements OnInit {
         return project.members?.some(member => member.id == (sessionStorage.getItem('userId')))
       })
     })
-
+    this.kanbanService.getAllKanbansOfUser().subscribe(res=>{
+      this.ownedKanbans=res.kanbans
+    })
     this.projectService.getAllProjectsOfUser().subscribe(res=>{
       this.ownedProjects = res.projects
     })
+
   }
 
   logout()

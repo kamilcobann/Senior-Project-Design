@@ -15,7 +15,7 @@ class AuthController extends Controller
 
     public function getAllUsers(){
         try {
-            $users = User::all();
+            $users = User::withCount(['ownedProjects','assignedProjects'])->get();
             return response()->json([
                 "status" => true,
                 "message" => "Users are successfully retrieved.",

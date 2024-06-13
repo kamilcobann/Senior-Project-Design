@@ -1,18 +1,13 @@
-<div class="w-full md:block hidden mt-4">
+<div class="w-full md:block hidden mt-5">
   <div class="ms-72">
     <div class="w-full flex justify-between items-center">
-      <div class="ms-11 w-1/6 flex rounded-full bg-zinc-700 py-2 ps-2 items-center">
-        <input type="text" class=" w-full bg-zinc-700 ms-2 text-white focus:outline-none" placeholder="Search">
-        <ng-icon name="heroMagnifyingGlass" class="text-white text-xl mx-4"></ng-icon>
+      <div class="ms-11 w-1/6 flex  py-2 ps-2 items-center">
+        <!-- <input type="text" class=" w-full bg-zinc-700 ms-2 text-white focus:outline-none" placeholder="Search">
+        <ng-icon name="heroMagnifyingGlass" class="text-white text-xl mx-4"></ng-icon> -->
       </div>
       <div class="me-11 w-1/4">
         <div class="w-full flex items-center">
-          <div class="flex gap-4">
-            <ng-icon name="heroBell" class="text-white text-xl"></ng-icon>
-            <ng-icon name="heroInbox" class="text-white text-xl"></ng-icon>
-          </div>
           <div class="text-white w-1/2 ms-4 flex items-center bg-zinc-950">
-            <ng-icon name="heroUser" class="text-white text-xl me-4"></ng-icon>
             <div class="hover:cursor-pointer text-sm text-gray-400 hover:text-gray-300" (click)="logout()">Logout</div>
           </div>
         </div>
@@ -23,7 +18,7 @@
 <div class="md:flex md:w-full">
   <app-protrack-sidebar></app-protrack-sidebar>
   <app-protrack-navbar></app-protrack-navbar>
-  <div class="w-full text-white md:ms-80 px-3 mt-3">
+  <div class="w-4/5 text-white md:ms-80 px-3 mt-3">
     <div class="w-full flex justify-between mt-3 mb-12 items-center">
       <div class="flex-col">
         <div class="md:text-3xl text-xl font-bold">Projects</div>
@@ -45,11 +40,11 @@
           Owned Projects
         </div>
         <app-protrack-box>
-          <app-protrack-project-list-item *ngFor="let item of ownedProjects"
-          [project]="item" [routerLink]="['/projects/',item.id]"></app-protrack-project-list-item>
+          <app-protrack-project-list-item *ngFor="let item of ownedProjects" [project]="item"
+            [routerLink]="['/projects/',item.id]"></app-protrack-project-list-item>
           <div class="w-full justify-center flex mt-3 mb-2">
-            <app-protrack-primary-button (click)="goToProjects()"
-              [buttonText]="'View all projects'"></app-protrack-primary-button>
+            <!-- <app-protrack-primary-button (click)="goToProjects()"
+              [buttonText]="'View all projects'"></app-protrack-primary-button> -->
           </div>
         </app-protrack-box>
       </div>
@@ -58,18 +53,19 @@
           Joined Projects
         </div>
         <app-protrack-box>
-          <app-protrack-project-list-item *ngFor="let item of joinedProjects"
-          [project]="item" [routerLink]="['/projects/',item.id]"></app-protrack-project-list-item>
+          <app-protrack-project-list-item *ngFor="let item of joinedProjects" [project]="item"
+            [routerLink]="['/projects/',item.id]"></app-protrack-project-list-item>
           <div class="w-full justify-center flex mt-3 mb-2">
-            <app-protrack-primary-button (click)="goToProjects()"
-              [buttonText]="'View all projects'"></app-protrack-primary-button>
+            <!-- <app-protrack-primary-button (click)="goToProjects()"
+              [buttonText]="'View all projects'"></app-protrack-primary-button> -->
           </div>
         </app-protrack-box>
       </div>
     </div>
   </div>
-  <div class="md:w-5/12 md:block hidden md:right-0 h-full md:ms-3 md:me-0 my-3 text-white">
-    <div class="text-white ms-4 font-bold text-lg mb-3 mt-8">Owned Tickets</div>
+
+  <div class="md:w-5/12 md:right-0 h-full md:ms-3 md:me-0 my-3 text-white">
+    <div class="text-white ms-4 font-bold text-lg mb-3">Owned Kanbans</div>
     <app-protrack-upcoming-events-list></app-protrack-upcoming-events-list>
   </div>
 </div>

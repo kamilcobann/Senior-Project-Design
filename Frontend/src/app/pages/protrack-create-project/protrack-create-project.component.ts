@@ -28,7 +28,6 @@ export class ProtrackCreateProjectComponent {
       is_active: true,
       status: 'Initial Status'
     })
-
   }
 
 
@@ -40,8 +39,11 @@ export class ProtrackCreateProjectComponent {
     if (this.projectForm.valid) {
       console.log(this.projectForm);
 
-      this.projectService.createProject(this.projectForm.value).subscribe(res =>
-        console.log(res)
+      this.projectService.createProject(this.projectForm.value).subscribe(res =>{
+        console.log(res.status);
+        this.router.navigate(['/projects/'+res.project.id])
+
+      }
       )
       this.resetForm()
     }

@@ -1,0 +1,75 @@
+<div class="w-full md:block hidden mt-5">
+  <div class="ms-72">
+    <div class="w-full flex justify-between items-center">
+      <div class="ms-11 w-1/6 flex  py-2 ps-2 items-center">
+        <!-- <input type="text" class=" w-full bg-zinc-700 ms-2 text-white focus:outline-none" placeholder="Search">
+        <ng-icon name="heroMagnifyingGlass" class="text-white text-xl mx-4"></ng-icon> -->
+      </div>
+      <div class="me-11 w-1/4">
+        <div class="w-full flex items-center">
+          <div class="text-white w-1/2 ms-4 flex items-center bg-zinc-950">
+            <div class="hover:cursor-pointer text-sm text-gray-400 hover:text-gray-300" (click)="logout()">Logout</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="md:flex md:w-full">
+  <app-protrack-sidebar></app-protrack-sidebar>
+  <app-protrack-navbar></app-protrack-navbar>
+  <div class=" w-full text-white md:ms-80 px-3">
+    <div class="w-full flex justify-between mt-3 mb-12 items-center">
+      <div class="flex-col">
+        <div class="md:text-3xl text-xl font-bold">Kanbans</div>
+        <div class="text-sm text-gray-400">Explore all the kanbans</div>
+      </div>
+    </div>
+    <div class="w-full">
+      <div class="flex-col w-3/4">
+        <div class="text-base ms-2">Owned Kanbans</div>
+        <app-protrack-box *ngFor="let kanban of ownedKanbans">
+          <div class=" mx-3 my-2 flex items-center justify-between hover:cursor-pointer">
+            <div  [routerLink]="['/projects/',kanban.related_project?.id,'kanbans',kanban.id]" class="flex items-center w-full gap-3">
+              <ng-icon name="heroTableCells" class="text-2xl"></ng-icon>
+              <div class=" font-semibold">{{kanban!.name}}</div>
+            </div>
+            <div class="flex gap-4 items-center w-full justify-end">
+              <div class="font-bold text-sm text-gray-400 hover:text-white">{{kanban?.members?.length}} Members</div>
+              <button class="hover:text-red-500 text-lg flex items-center">
+                <ng-icon (click)="openRemoveDialog('0ms', '0ms',kanban,kanban.related_project!)" name="heroXMark"></ng-icon>
+              </button>
+            </div>
+          </div>
+        </app-protrack-box>
+        <!-- <app-protrack-box class="hover:cursor-pointer" >
+          <div class="mx-3 my-2 flex  items-center justify-between" *ngFor="let kanban of ownedKanbans" [routerLink]="['/projects/'+kanban.related_project?.id+'/kanbans/'+kanban.id]">
+            <div class="flex items-center md:w-1/2 w-full gap-3">
+              <ng-icon name="heroUserCircle" class="text-4xl"></ng-icon>
+              <div class=" font-semibold" >{{kanban.name}}</div>
+            </div>
+            <div class="text-sm font-light">
+              <div class="">Members: {{kanban.members?.length}}</div>
+            </div>
+          </div>
+        </app-protrack-box> -->
+
+      </div>
+      <div class="flex-col w-3/4 mt-4">
+        <div class="text-base ms-2">Joined Kanbans</div>
+        <app-protrack-box class="hover:cursor-pointer">
+          <div class="mx-3 my-2 flex  items-center justify-between" *ngFor="let kanban of joinedKanbans" [routerLink]="['/projects/'+kanban.related_project?.id+'/kanbans/'+kanban.id]">
+            <div class="flex items-center md:w-1/2 w-full gap-3">
+              <ng-icon name="heroUserCircle" class="text-4xl"></ng-icon>
+              <div class=" font-semibold" >{{kanban.name}}</div>
+            </div>
+            <div class="text-sm font-light">
+              <div class="">Members: {{kanban.members?.length}}</div>
+            </div>
+          </div>
+        </app-protrack-box>
+
+      </div>
+    </div>
+  </div>
+</div>

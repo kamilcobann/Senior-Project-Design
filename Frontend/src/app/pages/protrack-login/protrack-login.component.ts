@@ -40,6 +40,7 @@ export class ProtrackLoginComponent implements OnInit{
           sessionStorage.setItem('authorization',res.authorization.token);
           sessionStorage.setItem('userId',res.user.id);
           this.dashboard();
+
         }
       });
 

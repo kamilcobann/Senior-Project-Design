@@ -8,7 +8,7 @@ import { KanbanList } from '../models/KanbanList';
   providedIn: 'root'
 })
 export class ProtrackKanbanListService {
-  private uri:string="http://127.0.0.1:8000/api";
+  private uri: string = "https://xzxi2hojv7fywfplkbqftq3a5i0mnbnd.lambda-url.us-east-1.on.aws/api";
 
   constructor(
     private http:HttpClient

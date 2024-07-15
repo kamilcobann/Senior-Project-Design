@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ProtrackProjectService {
 
-  private uri: string = "https://xzxi2hojv7fywfplkbqftq3a5i0mnbnd.lambda-url.us-east-1.on.aws/api";
+  private uri: string = "http://127.0.0.1:8000/api";
 
   constructor(
     private http:HttpClient

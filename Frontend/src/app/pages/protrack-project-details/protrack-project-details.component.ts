@@ -12,6 +12,7 @@ import { ProtrackAddKanbanDialogComponent } from 'src/app/shared/components/prot
 import { ProtrackAddUserToProjectDialogComponent } from 'src/app/shared/components/protrack-add-user-to-project-dialog/protrack-add-user-to-project-dialog.component';
 import { ProtrackEditProjectDialogComponent } from 'src/app/shared/components/protrack-edit-project-dialog/protrack-edit-project-dialog.component';
 import { AuthService } from 'src/app/services/auth.service';
+import {Budget} from "../../models/Budget";
 
 
 @Component({
@@ -28,6 +29,9 @@ export class ProtrackProjectDetailsComponent implements OnInit {
   start_date!: String;
   isToggled!: Boolean;
   totalBudget!:number;
+  expandBudgets:Boolean = false;
+  budgets!:Budget[];
+  allBudgets!:Budget[];
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -114,10 +118,16 @@ export class ProtrackProjectDetailsComponent implements OnInit {
 
     this.projectSercvice.getProjectById(String(this.route.snapshot.paramMap.get('id'))).subscribe(res => {
       this.project = res.project
+      this.allBudgets = this.project.budgets!
       this.start_date = new Date(this.project.start_date!.toString()).toDateString()
       console.log(this.project);
       this.isToggled = this.project.is_active ? this.project.is_active : false
       this.totalBudget= this.calculateTotalBudget();
+      if (!this.expandBudgets){
+        this.budgets = this.project.budgets!.slice(0,2);
+      }else{
+        this.budgets = this.allBudgets
+      }
     })
 
     this.kanbanService.getAllKanbansOfProject(this.projectId).subscribe(res => {
@@ -135,6 +145,10 @@ export class ProtrackProjectDetailsComponent implements OnInit {
       totalBudget += budget.amount!
     }
     return totalBudget
+  }
+
+  toggleBudget(){
+    this.expandBudgets = !this.expandBudgets
   }
 
   removeMemberFromProject(id: String) {

@@ -88,8 +88,18 @@
                     {{totalBudget}}<span class="ms-1 text-sm ">$</span>
                   </div>
                   <div class="col-span-3 flex items-baseline justify-start ms-2">
-                    <ul class="w-full mx-2">
-                      <li *ngFor="let budget of project.budgets" class="flex w-full justify-between items-center">
+                    <ul class="w-full mx-2" *ngIf="expandBudgets">
+                      <li *ngFor="let budget of allBudgets" class="flex w-full justify-between items-center">
+                        <div>
+                          {{budget.title}}
+                        </div>
+                        <div>
+                          {{budget.amount}}<span class="mx-1 text-sm ">$</span>
+                        </div>
+                      </li>
+                    </ul>
+                    <ul class="w-full mx-2" *ngIf="!expandBudgets">
+                      <li *ngFor="let budget of budgets" class="flex w-full justify-between items-center">
                         <div>
                           {{budget.title}}
                         </div>
@@ -99,8 +109,10 @@
                       </li>
                     </ul>
                   </div>
-                  <div class="col-span-3 flex justify-end me-4 mb-2 items-center text-xs hover:cursor-pointer hover:underline hover:text-purple-400">
-                    See More
+                  <div
+                    (click)="toggleBudget()"
+                    class="col-span-3 flex justify-end me-4 mb-2 items-center text-xs hover:cursor-pointer hover:underline hover:text-purple-400">
+                    {{!expandBudgets ? 'See More' : 'Show Less'}}
                   </div>
 
                 </div>

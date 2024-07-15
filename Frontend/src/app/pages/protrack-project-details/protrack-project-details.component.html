@@ -76,6 +76,61 @@
               </div>
             </div>
           </app-protrack-box>
+
+          <div class="w-full flex gap-4">
+            <div class="w-1/2">
+              <div class="text-lg font-semibold mb-2">
+                Budget
+              </div>
+              <app-protrack-box>
+                <div class="grid grid-cols-3 grid-flow-row gap-4">
+                  <div class="col-span-3 flex items-baseline justify-start ms-4 text-xl">
+                    {{totalBudget}}<span class="ms-1 text-sm ">$</span>
+                  </div>
+                  <div class="col-span-3 flex items-baseline justify-start ms-2">
+                    <ul class="w-full mx-2">
+                      <li *ngFor="let budget of project.budgets" class="flex w-full justify-between items-center">
+                        <div>
+                          {{budget.title}}
+                        </div>
+                        <div>
+                          {{budget.amount}}<span class="mx-1 text-sm ">$</span>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-span-3 flex justify-end me-4 mb-2 items-center text-xs hover:cursor-pointer hover:underline hover:text-purple-400">
+                    See More
+                  </div>
+
+                </div>
+              </app-protrack-box>
+            </div>
+            <div class="w-1/2">
+              <div class="text-lg font-semibold mb-2">
+                Expenses
+              </div>
+              <app-protrack-box>
+                <div class="grid grid-cols-3 grid-flow-row gap-4">
+                  <div class="col-span-3 flex items-baseline justify-start ms-2">
+                    <span class="text-2xl me-1">$</span>500.000
+                  </div>
+                  <div class="col-span-3 flex items-baseline justify-start ms-2">
+                    <ul>
+                      <li>1</li>
+                      <li>2</li>
+                      <li>3</li>
+                    </ul>
+                  </div>
+                  <div class="col-span-3 flex justify-end me-4 mb-2 items-center text-xs hover:cursor-pointer hover:underline hover:text-purple-400">
+                    See More
+                  </div>
+
+                </div>
+              </app-protrack-box>
+            </div>
+
+          </div>
           <app-protrack-box *ngIf="kanbans!.length < 1">
             <div class="text-gray-400 text-sm text-center p-2">There's no kanban yet. Everything starts with a plan. So
               just <span class="hover:text-white hover:cursor-pointer"

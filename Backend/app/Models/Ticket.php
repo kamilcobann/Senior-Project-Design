@@ -16,7 +16,9 @@ class Ticket extends Model
     protected $fillable = [
         'title',
         'description',
-        "by_kanban_list_id"
+        "by_kanban_list_id",
+        "in_progress_started_at",
+        "archived_at"
     ];
 
     /**

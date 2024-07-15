@@ -1,4 +1,5 @@
 import { User } from "./User";
+import {Budget} from "./Budget";
 
 export interface Project{
   id?:String;
@@ -10,4 +11,5 @@ export interface Project{
   status?:String;
   members?:[User];
   owner?:User;
+  budgets?:[Budget];
 }

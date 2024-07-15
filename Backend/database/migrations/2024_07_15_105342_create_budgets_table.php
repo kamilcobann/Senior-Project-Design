@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tickets', function (Blueprint $table) {
+        Schema::create('budgets', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('description')->nullable();
-            $table->foreignIdFor(\App\Models\User::class,'by_user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignIdFor(\App\Models\KanbanList::class,'by_kanban_list_id')->constrained('kanban_lists')->onDelete('cascade');
-            $table->dateTime('in_progress_started_at')->nullable();
-            $table->dateTime('archived_at')->nullable();
+            $table->foreignIdFor(\App\Models\Project::class,'by_project_id')->constrained('projects')->onDelete('cascade');
+            $table->double('amount');
             $table->timestamps();
-
         });
     }
 
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tickets');
+        Schema::dropIfExists('budgets');
     }
 };

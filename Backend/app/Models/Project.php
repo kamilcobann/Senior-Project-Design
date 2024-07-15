@@ -40,4 +40,8 @@ class Project extends Model
         return $this->hasMany(Kanban::class,'by_project_id');
     }
 
+    public function budgets():HasMany{
+        return $this->hasMany(Budget::class,'by_project_id');
+    }
+
 }

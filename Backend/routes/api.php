@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\KanbanController;
@@ -73,7 +74,7 @@ Route::controller(TicketController::class)->middleware("auth")->group(function()
 });
 
 
-Route::controller(CommentController::class)->group(function(){
+Route::controller(CommentController::class)->middleware('auth')->group(function(){
     Route::post('/tickets/{ticketId}/comments','createComment');
     Route::get('/comments','getAllComments');
     Route::get('/tickets/{ticketId}/comments','getAllCommentsOfTicket');
@@ -83,5 +84,11 @@ Route::controller(CommentController::class)->group(function(){
     Route::delete('/comments/{commentId}','deleteComment');
 
 });
-
+Route::controller(BudgetController::class)->middleware('auth')->group(function(){
+    Route::get('/budgets','getAllBudgets');
+    Route::get('/budgets/{id}','getBudgetById');
+    Route::post('/budgets', 'createBudget');
+    Route::put('/budgets/{id}','updateBudget');
+    Route::delete('/budgets/{id}','deleteBudget');
+});
 Route::post('/messages',[ChatController::class,'message']);

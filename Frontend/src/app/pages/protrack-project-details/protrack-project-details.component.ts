@@ -27,8 +27,7 @@ export class ProtrackProjectDetailsComponent implements OnInit {
   kanbans?: [Kanban];
   start_date!: String;
   isToggled!: Boolean;
-
-
+  totalBudget!:number;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -118,7 +117,7 @@ export class ProtrackProjectDetailsComponent implements OnInit {
       this.start_date = new Date(this.project.start_date!.toString()).toDateString()
       console.log(this.project);
       this.isToggled = this.project.is_active ? this.project.is_active : false
-
+      this.totalBudget= this.calculateTotalBudget();
     })
 
     this.kanbanService.getAllKanbansOfProject(this.projectId).subscribe(res => {
@@ -126,10 +125,17 @@ export class ProtrackProjectDetailsComponent implements OnInit {
       console.log(this.kanbans);
 
     })
+
   }
 
 
-
+  calculateTotalBudget(){
+    let totalBudget = 0;
+    for (let budget of this.project.budgets!) {
+      totalBudget += budget.amount!
+    }
+    return totalBudget
+  }
 
   removeMemberFromProject(id: String) {
 

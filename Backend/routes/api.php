@@ -85,10 +85,21 @@ Route::controller(CommentController::class)->middleware('auth')->group(function(
 
 });
 Route::controller(BudgetController::class)->middleware('auth')->group(function(){
+    Route::get('/projects/{projectId}/budgets','getAllBudgetsOfProject');
     Route::get('/budgets','getAllBudgets');
-    Route::get('/budgets/{id}','getBudgetById');
+    Route::get('/budgets/{id}','getBudget');
     Route::post('/budgets', 'createBudget');
     Route::put('/budgets/{id}','updateBudget');
     Route::delete('/budgets/{id}','deleteBudget');
+
+});
+
+Route::controller(\App\Http\Controllers\ExpenseController::class)->middleware('auth')->group(function(){
+   Route::post('/expenses','createExpense');
+   Route::get('/expenses','getAllExpenses');
+   Route::get('/expenses/{id}','getExpense');
+   Route::put('/expenses/{id}','updateExpense');
+   Route::delete('/expenses/{id}','deleteExpense');
+
 });
 Route::post('/messages',[ChatController::class,'message']);

@@ -9,6 +9,7 @@ import { ProtrackProjectDetailsComponent } from './pages/protrack-project-detail
 import { ProtrackKanbanDetailsComponent } from './pages/protrack-kanban-details/protrack-kanban-details.component';
 import { ProtrackMembersComponent } from './pages/protrack-members/protrack-members.component';
 import { ProtrackKanbansComponent } from './pages/protrack-kanbans/protrack-kanbans.component';
+import {ProtrackBudgetDetailsComponent} from "./pages/protrack-budget-details/protrack-budget-details.component";
 
 const routes: Routes = [
   {
@@ -26,8 +27,7 @@ const routes: Routes = [
   { path: 'projects/:id/kanbans/:kanbanId', component: ProtrackKanbanDetailsComponent },
   { path: 'members', component: ProtrackMembersComponent },
   { path: 'kanbans', component: ProtrackKanbansComponent },
-  // { path: 'kanbans/:id', component: ProtrackKanbanDetailsComponent }
-
+  { path: 'projects/:id/budgets', component: ProtrackBudgetDetailsComponent },
 
 ];
 

@@ -1,4 +1,5 @@
 import { Project } from "./Project";
+import {Expense} from "./Expense";
 
 export interface Budget{
   id?:String;
@@ -6,4 +7,6 @@ export interface Budget{
   description?:String;
   amount?:number;
   project?:Project;
+  current_budget?:number;
+  expenses?: Expense[];
 }

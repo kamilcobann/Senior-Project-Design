@@ -13,6 +13,7 @@ import { ProtrackAddUserToProjectDialogComponent } from 'src/app/shared/componen
 import { ProtrackEditProjectDialogComponent } from 'src/app/shared/components/protrack-edit-project-dialog/protrack-edit-project-dialog.component';
 import { AuthService } from 'src/app/services/auth.service';
 import {Budget} from "../../models/Budget";
+import {Expense} from "../../models/Expense";
 
 
 @Component({
@@ -31,7 +32,11 @@ export class ProtrackProjectDetailsComponent implements OnInit {
   totalBudget!:number;
   expandBudgets:Boolean = false;
   budgets!:Budget[];
+  expenses!:Expense[];
+  allExpenses:Expense[] = [];
   allBudgets!:Budget[];
+  totalExpense!:number;
+  expandExpenses: Boolean = false;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -133,22 +138,35 @@ export class ProtrackProjectDetailsComponent implements OnInit {
     this.kanbanService.getAllKanbansOfProject(this.projectId).subscribe(res => {
       this.kanbans = res.kanbans;
       console.log(this.kanbans);
-
     })
 
   }
 
 
   calculateTotalBudget(){
-    let totalBudget = 0;
+    let totalBudget:number = 0;
+    let totalExpense:number=0
     for (let budget of this.project.budgets!) {
-      totalBudget += budget.amount!
+      totalBudget += budget.current_budget!
+      for (let expense of budget.expenses!) {
+        this.allExpenses.push(expense);
+        totalExpense += expense.amount!
+      }
+      this.totalExpense = totalExpense
     }
     return totalBudget
   }
 
   toggleBudget(){
     this.expandBudgets = !this.expandBudgets
+  }
+
+  toggleExpense(){
+    this.expandExpenses = !this.expandExpenses
+  }
+
+  goToBudgets(){
+    this.router.navigate(['projects/',this.projectId,'budgets'])
   }
 
   removeMemberFromProject(id: String) {

@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Delete Budget</h1>
+<div mat-dialog-content>
+  Would you like to delete this budget and its all related expenses?
+</div>
+<div mat-dialog-actions id="delete-buttons">
+  <button mat-button mat-dialog-close class="no">No</button>
+  <button mat-button mat-dialog-close class="yes" (click)="deleteBudget(this.data.budget.id!)" >Yes</button>
+</div>

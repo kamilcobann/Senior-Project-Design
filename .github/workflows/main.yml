@@ -24,13 +24,13 @@ jobs:
           php-version: '8.1'
           extensions: mbstring, bcmath, pdo, zip
 
-      - name: Change directory
-        run: cd Backend
-
       - name: where am i 
         run: pwd
-      - name: echo echo  
-        run: echo "here"
+        
+      - name: CHANGE
+        run: cd /Backend 
+      - name: echo
+        run: echo pwd
         
       - name: Install dependencies
         run: composer install --no-dev --optimize-autoloader

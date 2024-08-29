@@ -33,6 +33,7 @@ jobs:
       - name: Copy .env file
         working-directory: Backend
         run: |
+             pwd
              cp .env.example .env
              php artisan key:generate
              php artisan jwt:secret

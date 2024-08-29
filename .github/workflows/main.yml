@@ -26,6 +26,12 @@ jobs:
 
       - name: Change directory
         run: cd Backend
+
+      - name: where am i 
+        run: pwd
+      - name: echo echo  
+        run: echo "here"
+        
       - name: Install dependencies
         run: composer install --no-dev --optimize-autoloader
 

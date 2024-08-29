@@ -1,11 +1,12 @@
 FROM php:8.3.11RC2-zts-alpine3.20
 
-RUN apt-get update && apt-get install -y \
-    build-essential \
+# Alpine'de apt-get yerine apk kullanılır
+RUN apk update && apk add --no-cache \
+    build-base \
     libpng-dev \
-    libjpeg-dev \
-    libfreetype6-dev \
-    libonig-dev \
+    libjpeg-turbo-dev \
+    freetype-dev \
+    oniguruma-dev \
     libzip-dev \
     zip \
     unzip \

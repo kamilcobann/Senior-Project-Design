@@ -30,7 +30,7 @@ jobs:
 
     
       - name: Copy .env file
-        run: cp .env.example .env
+        run: cp /Backend/.env.example /Backend/.env
 
     
       - name: Generate application key

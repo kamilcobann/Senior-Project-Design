@@ -47,7 +47,10 @@ jobs:
 
     
       - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/laravel_app:${{ github.sha }} .
+        run: |
+             pwd
+             ls -la
+             docker build -t ${{ secrets.DOCKER_USERNAME }}/laravel_app:${{ github.sha }} .
 
     
       - name: Push Docker image

@@ -24,27 +24,18 @@ jobs:
           php-version: '8.1'
           extensions: mbstring, bcmath, pdo, zip
 
-      - name: where am i 
-        run: pwd
-        
-      - name: CHANGE
-        run: cd /Backend 
-      - name: echo
-        run: echo pwd
         
       - name: Install dependencies
+        working-directory: ./Backend
         run: composer install --no-dev --optimize-autoloader
 
     
       - name: Copy .env file
-        run: cp .env.example .env
-
-    
-      - name: Generate application key
-        run: php artisan key:generate
-
-      - name: Generate application JWT
-        run: php artisan jwt:secret
+        working-directory: ./Backend
+        run: |
+             cp .env.example .env
+             php artisan key:generate
+             php artisan jwt:secret
 
     
       - name: Log in to Docker Hub

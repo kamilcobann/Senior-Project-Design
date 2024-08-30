@@ -52,10 +52,9 @@ jobs:
       - name: Set up Minikube
         uses: manusa/actions-setup-minikube@v2.7.0
         with:
-          minikube-version: 'v1.29.0'  # Örneğin, Minikube'un 1.29.0 sürümünü kullanmak
-          kubernetes-version: 'v1.24.0'
+          minikube version: 'v1.29.0'  # Doğru parametre ismi
+          kubernetes version: 'v1.24.0'  # Doğru parametre ismi
           driver: docker
-
 
       - name: Deploy to Kubernetes
         run: |
